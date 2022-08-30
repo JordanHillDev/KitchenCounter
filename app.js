@@ -1,6 +1,5 @@
 // Imports
 const express = require("express");
-const expressLayouts = require('express-ejs-layouts')
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
@@ -22,10 +21,7 @@ if (process.env.NODE_ENV === "development") {
 app.use(express.static('public'))
 
 // Set Templating Engine
-app.use(expressLayouts)
-app.set('layout', './layouts/main')
 app.set('view engine', 'ejs')
-
 
 // Routes
 app.use('/', require('./routes/index'))
