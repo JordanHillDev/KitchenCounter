@@ -49,12 +49,18 @@ module.exports = {
         try {
             const name = req.body.itemName;
             const price = req.body.price;
+            const countedBy = req.body.countedBy
             const listId = req.query.listId
             await MasterList.updateOne(
                 { _id: listId },
-                { $push: { items: { name: name, price: price } } }
+                { $push: { items: { 
+                    name: name, 
+                    countedBy: countedBy, 
+                    price: price,  
+                }}}
             );
             console.log("An Item has been added");
+            console.log(countedBy)
             res.redirect(`../editMaster/?listId=${listId}`);
         } catch (error) {
             console.log(error);
@@ -67,8 +73,12 @@ module.exports = {
         await MasterList.updateOne(
             { _id: listId },
             { $pull: { items: { _id: itemId } }})
-            console.log('item removed')
-            res.redirect(`../editMaster/?listId=${listId}`);
+        console.log('item removed')
+        await MasterList.findOneAndUpdate(
+            { _id: listId },
+            { updatedDate: new Date() }
+        )
+        res.redirect(`../editMaster/?listId=${listId}`);
       } catch (error) {
         console.log(error)
       }

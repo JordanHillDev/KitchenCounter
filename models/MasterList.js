@@ -15,7 +15,11 @@ const ItemSchema = new mongoose.Schema({
         type: Number
     },
     category: {
-        type: String
+        type: String,
+    },
+    countedBy: {
+        type: String,
+        required: true
     }
 })
 
