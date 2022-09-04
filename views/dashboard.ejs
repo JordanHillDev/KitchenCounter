@@ -8,7 +8,37 @@
     <title>KitchenCounter</title>
 </head>
 <body>
-    <h1>This is the dashboard</h1>
-    <h2><%= userName %></h2>
+    <header>
+        <h1>KitchenCounter</h1>
+        <h3><%= user.userName %></h3>
+    </header>
+    <main>
+        <section>
+            <div class="titleBar">
+                <h2>Master Lists</h2>
+                <button>Create New</button>
+            </div>
+            <section>
+                <% lists.forEach(el => { %>
+                    <li class="listItem" data-id="<%=el._id%>">
+                        <h3><%=el.listName%></h3>
+                        <span>Created: <%=el.createdDate.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})%></span>
+                        <span>Last Updated: <%=el.updatedDate.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})%></span>
+                        <a class="editMasterBtn" href="/dashboard/editMaster/?listId=<%=el._id%>">Edit</a>
+                        <button>Delete</button>
+                    </li>
+                <% }) %>
+            </section>
+        </section>
+
+        <div class="titleBar">
+            <h2>Entries</h2>
+            <button>Add Inventory</button>
+        </div>
+        
+
+    </main>
+   <script src="js/main.js"></script>
+
 </body>
 </html>

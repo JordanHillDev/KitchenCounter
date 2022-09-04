@@ -49,7 +49,7 @@ const User = require('../models/User')
   
   exports.getSignup = (req, res) => {
     if (req.user) {
-      return res.redirect('/dashboard')
+      return res.redirect('/idashboard')
     }
     res.render('signup', {
       title: 'Create Account'
