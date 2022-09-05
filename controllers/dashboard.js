@@ -5,7 +5,6 @@ module.exports = {
     getIndex: async (req, res) => {
         try {
             const lists = await MasterList.find({ userId: req.user.id });
-            console.log(lists);
             res.render("dashboard.ejs", {
                 user: req.user,
                 lists: lists,
@@ -25,7 +24,6 @@ module.exports = {
                 createdDate: new Date(),
                 updatedDate: new Date(),
             });
-            console.log("Master List has been added");
             res.redirect("/dashboard");
         } catch (error) {
             console.log(err);
@@ -58,9 +56,11 @@ module.exports = {
                     countedBy: countedBy, 
                     price: price,  
                 }}}
-            );
-            console.log("An Item has been added");
-            console.log(countedBy)
+            )
+            await MasterList.findOneAndUpdate(
+                { _id: listId },
+                { updatedDate: new Date() }
+            )
             res.redirect(`../editMaster/?listId=${listId}`);
         } catch (error) {
             console.log(error);

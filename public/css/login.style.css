@@ -1,0 +1,34 @@
+
+/* Layout */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#loginImg {
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20vh;
+}
+
+ul {
+    display: flex;
+    margin-top: 100px;
+}
+
+li:first-of-type {
+    margin-right: 20px;
+}
+
+li a{
+    color: white;
+}
+
+/* Additional Styles */
+body {
+    background-color: var(--primary-color);
+}
+
