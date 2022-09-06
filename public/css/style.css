@@ -37,6 +37,7 @@ li {
     padding: .75em 2em;
     border-radius: 2em;
     text-transform: uppercase;
+    transition: .3s;
 }
 
 .btn:hover {
