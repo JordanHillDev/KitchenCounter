@@ -5,7 +5,6 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -15,16 +14,16 @@ body {
     margin: 5vh 0;
 }
 
-h2 {
-    margin-bottom: 20px;
-    align-self: flex-start;
-}
-
 #loginModal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.75rem 1.5rem;
+    padding: 1.2rem 1.5rem ;
+}
+
+h2 {
+    margin-bottom: 40px;
+    align-self: flex-start;
 }
 
 form {
@@ -33,14 +32,28 @@ form {
 }
 
 input {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     padding: .5rem;
 }
 
-input .btn {
-    width: 100%;
+.errorContainer {
+    height: 1rem;
+    margin-bottom: 10px;
 }
 
+form span {
+    text-align: center;
+    margin: 20px 0;
+}
+
+input.btn {
+    margin-bottom: 40px;
+}
+
+#btn_signUp {
+    margin-top: 25px;
+    margin-bottom: 0px;
+}
 
 /* ===================================== */
 /* ======== Additional Styles ========== */
@@ -54,6 +67,12 @@ h2 {
     color: var(--primary-color)
 }
 
+.errorContainer {
+    text-align: center;
+    color: red;
+}
+
+
 #loginModal {
     background-color: var(--primary-light-color);
     border-radius: 1rem;
@@ -65,9 +84,15 @@ input {
     border-radius: .3rem;
     width: 300px;
     box-shadow: 2px 2px 4px 2px rgb(168, 165, 165);
+    -webkit-appearance: none; /* allows box-shadow to show on iOS */
+}
+
+input:focus {
+    outline: 2px solid var(--primary-color)
 }
 
 form input.btn {
+    box-shadow: none;
     border-color: var(--primary-color);
     border-radius: .3rem;
 }

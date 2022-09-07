@@ -23,23 +23,27 @@
     <img id="loginImg" src="images\default-monochrome.svg" alt="" />
     <section id="loginModal">
         <h2>Sign In</h2>
+        <div class="errorContainer">
+            <% if (locals.messages.errors) { %>
+                <% messages.errors.forEach( el => { %>
+                    <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+            <% if (locals.messages.info) { %>
+                <% messages.info.forEach( el => { %>
+                    <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %>    
+            <% } %>
+        </div>
         <form action="/login" method="POST">
             <input type="email" name="email" placeholder="Email">
             <input type="password" name="password" placeholder="Password">
+            <span><a href="">Forgot your password?</a></span>
             <input class="btn btn_secondary" type="submit">
         </form>
-        <span>Don't have an account? <a href="">Sign up</a></span>
+        <span>Don't have an account? <a href="/signup">Sign up</a></span>
         
     </section>
-    <% if (locals.messages.errors) { %>
-        <% messages.errors.forEach( el => { %>
-            <div class="alert alert-danger"><%= el.msg %></div>
-        <% }) %>    
-    <% } %>
-    <% if (locals.messages.info) { %>
-        <% messages.info.forEach( el => { %>
-            <div class="alert alert-danger"><%= el.msg %></div>
-        <% }) %>    
-    <% } %>
+    
 </body>
 </html>
