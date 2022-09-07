@@ -1,52 +1,81 @@
-/* Layout */
+/* ===================================== */
+/* ============= Layout ================ */
+/* ===================================== */
 body {
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#loginModal {
-    width: 330px; 
-    height: 350px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
 }
 
-form {
+#loginImg {
+    width: 80%;
+    max-width: 800px;
+    margin: 5vh 0;
+}
+
+h2 {
+    margin-bottom: 20px;
+    align-self: flex-start;
+}
+
+#loginModal {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 0.75rem 1.5rem;
 }
 
-form input {
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 15px;
+    padding: .5rem;
+}
+
+input .btn {
     width: 100%;
-    height: 2em;
 }
 
-form input.btn {
-   margin-top: 130px;
-   border-radius: .2rem;
-}
 
-/* Additional Styles */
+/* ===================================== */
+/* ======== Additional Styles ========== */
+/* ===================================== */
 body {
     background-color: var(--primary-color);
 }
 
+h2 {
+    font-size: 2rem;
+    color: var(--primary-color)
+}
+
 #loginModal {
-    background-color: white;
-    border-radius: 2rem;
+    background-color: var(--primary-light-color);
+    border-radius: 1rem;
 }
 
-#loginModal, input {
-    font-family: var(--font-regular)
+input {
+    outline: none;
+    border: none;
+    border-radius: .3rem;
+    width: 300px;
+    box-shadow: 2px 2px 4px 2px rgb(168, 165, 165);
 }
 
-form input {
-    font-size: 1.2rem;
+form input.btn {
+    border-color: var(--primary-color);
+    border-radius: .3rem;
 }
+
+span {
+    color: var(--primary-color)
+}
+
+
+
+

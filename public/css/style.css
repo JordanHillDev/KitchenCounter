@@ -1,4 +1,6 @@
-/* ---------- General ---------- */
+/* ===================================== */
+/* ============= General =============== */
+/* ===================================== */
 * {
     box-sizing: border-box;
 }
@@ -7,7 +9,9 @@ body {
     font-family: var(--font-regular);
 }
 
-/* ---------- Resets ---------- */
+/* ===================================== */
+/* ============== Resets =============== */
+/* ===================================== */
 a {
     text-decoration: none;
 }
@@ -20,7 +24,9 @@ li {
     list-style-type: none;
 }
 
-/* ---------- Variables ---------- */
+/* ===================================== */
+/* ============= Variables ============= */
+/* ===================================== */
 :root {
     --primary-color: hsl(275, 61%, 32%);
     --primary-light-color: hsl(276, 29%, 80%);
@@ -29,7 +35,9 @@ li {
     --font-regular: 'Roboto', sans-serif;
 }
 
-/* ---------- Utility Classes ---------- */
+/* ===================================== */
+/* ========== Utility Classes ========== */
+/* ===================================== */
 .btn {
     color: var(--accent-color);
     background-color: var(--primary-color);
@@ -38,6 +46,8 @@ li {
     border-radius: 2em;
     text-transform: uppercase;
     transition: .3s;
+    font-weight: bold;
+    font-family: var(--font-regular);
 }
 
 .btn:hover {
