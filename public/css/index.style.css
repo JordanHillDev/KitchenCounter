@@ -6,7 +6,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 }
 
 #loginImg {
@@ -31,7 +30,5 @@ li a{
 /* ===================================== */
 /* ======== Additional Styles ========== */
 /* ===================================== */
-body {
-    background-color: var(--primary-color);
-}
+
 

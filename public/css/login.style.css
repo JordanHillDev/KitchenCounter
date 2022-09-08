@@ -58,10 +58,6 @@ input.btn {
 /* ===================================== */
 /* ======== Additional Styles ========== */
 /* ===================================== */
-body {
-    background-color: var(--primary-color);
-}
-
 h2 {
     font-size: 2rem;
     color: var(--primary-color)
@@ -99,6 +95,11 @@ form input.btn {
 
 span {
     color: var(--primary-color)
+}
+
+span a:hover {
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 

@@ -1,0 +1,172 @@
+/* ===================================== */
+/* ============= Layout ================ */
+/* ===================================== */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logoText {
+    width: 60vw;
+    max-width: 650px;
+    position: absolute;
+    transform: translateX(60px) translateY(40px)
+}
+
+main {
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 100px;
+    padding: 1rem;
+}
+
+#iconContainer {
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    position: absolute;
+    transform: translateY(-55%);
+}
+
+#icon {
+    width: 15vw;
+    max-width: 70px;
+    height: 15vw;
+    max-height: 70px;
+}
+
+section {
+    width: 100%;
+    margin: 10px 0;
+    padding: .5rem;
+}
+
+#masterLists {
+    margin-top: 100px;
+}
+
+.titleBar {
+    padding: 1rem;
+}
+
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8rem;
+    margin: 0 5px 10px 5px;
+}
+
+.listItem span {
+    margin-left: 10px;
+}
+
+#addMasterBtn {
+    display: block;
+    width: 150px;
+    margin: 50px 0 0 auto;
+}
+
+#addInvBtn {
+    display: block;
+    margin: 75px 0 0 auto;
+    width: 250px;
+}
+
+
+
+/* ===================================== */
+/* ======== Additional Styles ========== */
+/* ===================================== */
+main {
+    background-color: var(--primary-light-color);
+}
+
+#iconContainer {
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    border: 8px solid var(--primary-light-color);
+}
+
+#icon {
+    background-color: var(--primary-color);
+}
+
+section {
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.dropdownBar {
+    box-shadow: 2px 2px 4px 2px rgb(168, 165, 165);
+    -webkit-appearance: none; /* allows box-shadow to show on iOS */ 
+    
+}
+
+.titleBar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(174, 171, 171);
+}
+
+.titleBar h2 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.directionArrow {
+    color: var(--primary-color)
+}
+
+.dropdownSection {
+    /* display: none; */
+}
+
+.listItem {
+    border-bottom: 1px solid rgb(174, 171, 171);
+}
+
+h3 {
+    font-size: 1.2rem;
+    color: #3B3B3B;
+    font-weight: bold;
+}
+
+section span {
+    font-size: .8rem;
+}
+
+#addMasterBtn {
+    border-radius: 4px;
+    border-color: #3B3B3B;
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+}
+
+.editMasterBtn {
+    font-size: .8rem;
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+    border-color: #3B3B3B;
+}
+
+#addInvBtn {
+    border-radius: 4px;
+    border: 2px solid var(--primary-color);
+    padding: 1.2rem;
+    font-weight: bold;
+}
+
+
+
+/* ===================================== */
+/* ========== Media Queries ============ */
+/* ===================================== */
+
+@media screen  and (min-width: 1001px) {
+    main {
+        border-radius: 5px;
+    }
+}
