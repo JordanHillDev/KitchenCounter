@@ -44,6 +44,14 @@ li {
 /* ===================================== */
 /* ========== Utility Classes ========== */
 /* ===================================== */
+.hidden {
+    display: none;
+}
+
+.underline {
+    border-bottom: 2px solid rgb(174, 171, 171);
+}
+
 .btn {
     color: var(--accent-color);
     background-color: var(--primary-color);
@@ -73,7 +81,18 @@ li {
     background-color: var(--primary-color);
 }
 
+.btn_icon {
+    padding: .5rem;
+    border-radius: 100%;
+    font-size: 1rem;
+    background-color: var(--primary-light-color);
+    color: var(--primary-color);
+    border-color: var(--primary-light-color);
+    box-shadow: 1px 1px 1px 1px var(--primary-color);
+}
+
 .listItem, .titleBar {
     display: flex;
     align-items: center;
 }
+

@@ -15,10 +15,12 @@ body {
 }
 
 main {
+    height: 80vh;
     width: 100%;
     max-width: 1000px;
     margin-top: 100px;
     padding: 1rem;
+    
 }
 
 #iconContainer {
@@ -47,7 +49,11 @@ section {
 }
 
 .titleBar {
-    padding: 1rem;
+    padding: .5rem;
+}
+
+#addMasterBtn {
+    margin: 0 30px 0 auto;
 }
 
 .listItem {
@@ -62,19 +68,11 @@ section {
     margin-left: 10px;
 }
 
-#addMasterBtn {
-    display: block;
-    width: 150px;
-    margin: 50px 0 0 auto;
-}
-
 #addInvBtn {
     display: block;
     margin: 75px 0 0 auto;
     width: 250px;
 }
-
-
 
 /* ===================================== */
 /* ======== Additional Styles ========== */
@@ -99,7 +97,7 @@ section {
 }
 
 .dropdownBar {
-    box-shadow: 2px 2px 4px 2px rgb(168, 165, 165);
+    box-shadow: 1px 1px 1px 1px var(--primary-color);
     -webkit-appearance: none; /* allows box-shadow to show on iOS */ 
     
 }
@@ -107,11 +105,10 @@ section {
 .titleBar {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid rgb(174, 171, 171);
 }
 
 .titleBar h2 {
-    font-size: 1.4rem;
+    font-size: 1rem;
     color: var(--primary-color);
     font-weight: bold;
 }
@@ -138,18 +135,13 @@ section span {
     font-size: .8rem;
 }
 
-#addMasterBtn {
-    border-radius: 4px;
-    border-color: #3B3B3B;
-    background-color: var(--primary-light-color);
-    color: var(--primary-color);
-}
-
 .editMasterBtn {
-    font-size: .8rem;
+    font-size: 1.2rem;
+    border-radius: 100%;
     background-color: var(--primary-light-color);
     color: var(--primary-color);
-    border-color: #3B3B3B;
+    border-color: var(--primary-light-color);
+    box-shadow: 1px 1px 1px 1px var(--primary-color);
 }
 
 #addInvBtn {
@@ -158,8 +150,6 @@ section span {
     padding: 1.2rem;
     font-weight: bold;
 }
-
-
 
 /* ===================================== */
 /* ========== Media Queries ============ */

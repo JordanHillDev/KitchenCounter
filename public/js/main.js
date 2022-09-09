@@ -1,20 +1,28 @@
-// const editMasterBtn = document.querySelectorAll('.editMasterBtn')
+const dropdownBars = document.querySelectorAll(".dropdownBar");
 
-// editMasterBtn.forEach(el => {
-//     el.addEventListener('click', getEditMaster)
-// })
+dropdownBars.forEach((el) => {
+    el.addEventListener("click", showDropdownContent);
+});
 
-// async function getEditMaster() {
-//     const listId = this.parentNode.dataset.listId
-//     try {
-//         const response = await fetch('dashboard/editMaster', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'listIdFromJSFile': listId
-//             })
-//         })
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+
+
+
+
+
+
+
+function showDropdownContent(e) {
+    const dropdownContent =
+        e.target.parentNode.querySelector(".dropdownSection");
+    const titleBar = e.target.parentNode.querySelector(".titleBar");
+    const arrow = e.target.parentNode.querySelector(".arrow");
+    titleBar.classList.toggle('underline')
+    dropdownContent.classList.toggle("hidden");
+    toggleArrow(arrow);
+}
+
+function toggleArrow(el) {
+    el.classList.contains("fa-chevron-down")
+        ? el.classList.replace("fa-chevron-down", "fa-chevron-up")
+        : el.classList.replace("fa-chevron-up", "fa-chevron-down");
+}

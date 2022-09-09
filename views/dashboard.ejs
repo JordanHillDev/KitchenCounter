@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/dashboard.style.css" />
+    <script src="https://kit.fontawesome.com/5ee5ea9bf9.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <img id="logoText" src="images/isolated-monochrome-white.svg" alt="">
@@ -29,32 +30,32 @@
         <section id="masterLists" class="dropdownBar">
             <div class="titleBar">
                 <h2>Master Lists</h2>
-                <span class="directionArrow">&#9660;</span> 
+                <a id="addMasterBtn" href="/dashboard/createList" class="btn_icon"><i class="fa-solid fa-plus"></i></a>
+                <i class="fa-solid fa-chevron-down arrow"></i>
             </div>
             
-            <section class="dropdownSection">
+            <section class="dropdownSection hidden">
                 <% lists.forEach(el => { %>
                     <li class="listItem" data-id="<%=el._id%>">
                         <h3><%=el.listName%></h3>
-                        <a class="editMasterBtn btn" href="/dashboard/editMaster/?listId=<%=el._id%>">Edit</a>
+                        <a class="btn_icon" href="/dashboard/editMaster/?listId=<%=el._id%>"><i class="fa-regular fa-pen-to-square"></i></a>
                     </li>
                 <% }) %>
-                <a id="addMasterBtn" href="/createList" class="btn">Add</a>
+                
             </section>
         </section>
 
         <section class="dropdownBar">
             <div class="titleBar">
                 <h2>Entries</h2>
-                <span class="directionArrow">&#9660;</span>
-                <section class="dropdownSection">
-                   
-                </section>
+                <i class="fa-solid fa-chevron-down arrow"></i>
             </div>
+            <section class="dropdownSection hidden">
+                <h1>filler</h1>
+             </section>
         </section>
         <a id="addInvBtn" class="btn btn_secondary" href="#">Add Inventory</a>
     </main>
    <script src="js/main.js"></script>
-
 </body>
 </html>
