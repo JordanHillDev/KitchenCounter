@@ -1,0 +1,12 @@
+/* ===================================== */
+/* ============= Layout ================ */
+/* ===================================== */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#categoriesBar {
+    flex-wrap: wrap;
+}

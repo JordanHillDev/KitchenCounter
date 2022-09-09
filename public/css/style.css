@@ -52,6 +52,8 @@ li {
     border-bottom: 2px solid rgb(174, 171, 171);
 }
 
+/* ========== Buttons ========== */
+
 .btn {
     color: var(--accent-color);
     background-color: var(--primary-color);
@@ -89,6 +91,50 @@ li {
     color: var(--primary-color);
     border-color: var(--primary-light-color);
     box-shadow: 1px 1px 1px 1px var(--primary-color);
+}
+
+/* ========== Page Elements ========== */
+main {
+    height: 80vh;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 100px;
+    padding: 100px 1rem 1rem 1rem;
+    background-color: var(--primary-light-color);
+}
+
+#logoText {
+    width: 60vw;
+    max-width: 650px;
+    position: absolute;
+    transform: translateX(60px) translateY(40px)
+}
+
+#iconContainer {
+    display: grid;
+    place-items: center;
+    padding: 1.5rem;
+    position: absolute;
+    transform: translateY(-120%);
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    border: 8px solid var(--primary-light-color);
+}
+
+#icon {
+    width: 15vw;
+    max-width: 70px;
+    height: 15vw;
+    max-height: 70px;
+    background-color: var(--primary-color);
+}
+
+section {
+    width: 100%;
+    margin: 10px 0;
+    padding: .5rem;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 .listItem, .titleBar {

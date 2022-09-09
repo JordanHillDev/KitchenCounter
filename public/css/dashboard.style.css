@@ -7,47 +7,6 @@ body {
     align-items: center;
 }
 
-#logoText {
-    width: 60vw;
-    max-width: 650px;
-    position: absolute;
-    transform: translateX(60px) translateY(40px)
-}
-
-main {
-    height: 80vh;
-    width: 100%;
-    max-width: 1000px;
-    margin-top: 100px;
-    padding: 1rem;
-    
-}
-
-#iconContainer {
-    display: grid;
-    place-items: center;
-    padding: 1.5rem;
-    position: absolute;
-    transform: translateY(-55%);
-}
-
-#icon {
-    width: 15vw;
-    max-width: 70px;
-    height: 15vw;
-    max-height: 70px;
-}
-
-section {
-    width: 100%;
-    margin: 10px 0;
-    padding: .5rem;
-}
-
-#masterLists {
-    margin-top: 100px;
-}
-
 .titleBar {
     padding: .5rem;
 }
@@ -77,25 +36,6 @@ section {
 /* ===================================== */
 /* ======== Additional Styles ========== */
 /* ===================================== */
-main {
-    background-color: var(--primary-light-color);
-}
-
-#iconContainer {
-    background-color: var(--primary-color);
-    border-radius: 100%;
-    border: 8px solid var(--primary-light-color);
-}
-
-#icon {
-    background-color: var(--primary-color);
-}
-
-section {
-    background-color: #fff;
-    border-radius: 8px;
-}
-
 .dropdownBar {
     box-shadow: 1px 1px 1px 1px var(--primary-color);
     -webkit-appearance: none; /* allows box-shadow to show on iOS */ 

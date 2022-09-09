@@ -4,38 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <title>KitchenCounter - Edit Master List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/normalize.css" />
+    <link rel="stylesheet" href="../../css/reset.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/editMaster.style.css" />
+    <script src="https://kit.fontawesome.com/5ee5ea9bf9.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1><%=user.userName%></h1>
-    <h2><%= listName %></h2>
-    <a href="../">Return To Dashboard</a>
+    <img id="logoText" src="../../images/isolated-monochrome-white.svg" alt="">
+    <main>
+        <div id="iconContainer">
+            <img id="icon" src="../../images/icon.svg" alt="">
+        </div>
 
-    <section>
-        <ul>
-            <%items.forEach(el => {%>
-                <li data-itemid=<%=el._id%> data-listid=<%=listId%>>
-                    <span><%=el.name%></span>
-                    <span>$<%=el.price%></span>
-                    <span><%=el.countedBy%></span>
-                    <button>Edit</button>
-                    <a href="/dashboard/removeItem/?itemId=<%=el._id%>&listId=<%=listId%>">Remove</a>
-                </li>
-            <%})%>
-        </ul>
-    </section>
+        <h2><%= listName %></h2>
 
-    <form action="/dashboard/addItem/?listId=<%=listId%>" method="POST">
-        <input type="text" placeholder="Item Name" name="itemName">
-        <input type="number" min="0" step="0.01" placeholder="Price" name="price">
-        <select name="countedBy" id="countedBy">
-            <option value="Each">Each</option>
-            <option value="Lb.">Lb.</option>
-            <option value="Case">Case</option>
-        </select>
-        <input type="submit">
-    </form>
+        <section id="categoriesBar" class="titleBar">
+            <h2>Categories</h2>
+            <select name="category" id="">
+                <option value="all">All</option>
+            </select>
+            <form action="" method="">
+                <input type="text">
+                <button type="submit"><i class="fa-solid fa-plus"></i></button>
+            </form>
+        </section>
+
+        <form action="/dashboard/addItem/?listId=<%=listId%>" method="POST">
+            <input type="text" placeholder="Item Name" name="itemName">
+            <input type="number" min="0" step="0.01" placeholder="Price" name="price">
+            <select name="countedBy" id="countedBy">
+                <option value="Each">Each</option>
+                <option value="Lb.">Lb.</option>
+                <option value="Case">Case</option>
+            </select>
+            <input type="submit">
+        </form>
+
+        <section>
+            <ul>
+                <%items.forEach(el => {%>
+                    <li data-itemid=<%=el._id%> data-listid=<%=listId%>>
+                        <span><%=el.name%></span>
+                        <span>$<%=el.price%></span>
+                        <span><%=el.countedBy%></span>
+                        <button>Edit</button>
+                        <a href="/dashboard/removeItem/?itemId=<%=el._id%>&listId=<%=listId%>"><i class="fa-regular fa-trash-can"></i></a>
+                    </li>
+                <%})%>
+            </ul>
+        </section>
+
+        
+    </main>
 
     <script src="../../js/editMaster.js"></script>
 </body>
