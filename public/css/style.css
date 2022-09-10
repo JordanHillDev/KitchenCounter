@@ -37,8 +37,9 @@ li {
     --primary-color: hsl(275, 61%, 32%);
     --primary-light-color: hsl(276, 29%, 80%);
     --accent-color: hsl(43, 100%, 49%);
+    --black-color: #3b3b3b;
 
-    --font-regular: 'Roboto', sans-serif;
+    --font-regular: "Roboto", sans-serif;
 }
 
 /* ===================================== */
@@ -52,24 +53,31 @@ li {
     border-bottom: 2px solid rgb(174, 171, 171);
 }
 
-/* ========== Buttons ========== */
+.rotate180 {
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+/* ===================================== */
+/* ============== Buttons ============== */
+/* ===================================== */
 
 .btn {
     color: var(--accent-color);
     background-color: var(--primary-color);
     border: 2px solid var(--accent-color);
-    padding: .75em 2em;
+    padding: 0.75em 2em;
     border-radius: 2em;
     text-transform: uppercase;
     text-align: center;
-    transition: .3s;
+    transition: 0.3s;
     font-weight: bold;
     font-family: var(--font-regular);
 }
 
 .btn:hover {
     color: var(--primary-color);
-    background-color: var(--accent-color); 
+    background-color: var(--accent-color);
 }
 
 .btn_secondary {
@@ -84,7 +92,7 @@ li {
 }
 
 .btn_icon {
-    padding: .5rem;
+    padding: 0.5rem;
     border-radius: 100%;
     font-size: 1rem;
     background-color: var(--primary-light-color);
@@ -93,21 +101,22 @@ li {
     box-shadow: 1px 1px 1px 1px var(--primary-color);
 }
 
-/* ========== Page Elements ========== */
+/* ===================================== */
+/* ============ Page Layout ============ */
+/* ===================================== */
 main {
     height: 80vh;
     width: 100%;
     max-width: 1000px;
     margin-top: 100px;
     padding: 100px 1rem 1rem 1rem;
-    background-color: var(--primary-light-color);
 }
 
 #logoText {
     width: 60vw;
     max-width: 650px;
     position: absolute;
-    transform: translateX(60px) translateY(40px)
+    transform: translateX(60px) translateY(40px);
 }
 
 #iconContainer {
@@ -116,9 +125,6 @@ main {
     padding: 1.5rem;
     position: absolute;
     transform: translateY(-120%);
-    background-color: var(--primary-color);
-    border-radius: 100%;
-    border: 8px solid var(--primary-light-color);
 }
 
 #icon {
@@ -126,19 +132,68 @@ main {
     max-width: 70px;
     height: 15vw;
     max-height: 70px;
-    background-color: var(--primary-color);
 }
 
 section {
     width: 100%;
     margin: 10px 0;
-    padding: .5rem;
+    padding: 0.5rem;
+}
+
+.titleBar {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+    margin: 0 5px 10px 5px;
+}
+
+/* ===================================== */
+/* ============ Page Styles ============ */
+/* ===================================== */
+main {
+    background-color: var(--primary-light-color);
+}
+
+#iconContainer {
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    border: 8px solid var(--primary-light-color);
+}
+
+#icon {
+    background-color: var(--primary-color);
+}
+
+section {
     background-color: #fff;
     border-radius: 8px;
 }
 
-.listItem, .titleBar {
-    display: flex;
-    align-items: center;
+.dropdownBar {
+    box-shadow: 1px 1px 1px 1px var(--primary-color);
+    -webkit-appearance: none; /* allows box-shadow to show on iOS */
 }
 
+.listItem {
+    border-bottom: 1px solid rgb(174, 171, 171);
+}
+
+.directionArrow {
+    color: var(--primary-color);
+}
+
+
+/* ===================================== */
+/* =========== Media Queries =========== */
+/* ===================================== */
+@media screen and (min-width: 1001px) {
+    main {
+        border-radius: 5px;
+    }
+}

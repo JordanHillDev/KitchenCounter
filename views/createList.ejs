@@ -1,22 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>KitchenCounter - Create Master</title>
-</head>
-<body>
-    <header>
-        <h1>KitchenCounter</h1>
-    </header>
+<%- include('partials/header', {styleSheet: "/css/editMaster.style.css"}); %> 
          <h2>Create New Master Inventory</h2>
          <form action="/dashboard/createList" method="POST">
             <input type="text" placeholder="Enter Master List Name" name="listName">
             <input type="submit">
          </form>
-    </main>
-   
-</body>
-</html>
+<%- include('partials/footer') -%>

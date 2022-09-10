@@ -4,13 +4,6 @@ dropdownBars.forEach((el) => {
     el.addEventListener("click", showDropdownContent);
 });
 
-
-
-
-
-
-
-
 function showDropdownContent(e) {
     const dropdownContent =
         e.target.parentNode.querySelector(".dropdownSection");
@@ -18,7 +11,7 @@ function showDropdownContent(e) {
     const arrow = e.target.parentNode.querySelector(".arrow");
     titleBar.classList.toggle('underline')
     dropdownContent.classList.toggle("hidden");
-    toggleArrow(arrow);
+    arrow.classList.toggle('rotate180')
 }
 
 function toggleArrow(el) {

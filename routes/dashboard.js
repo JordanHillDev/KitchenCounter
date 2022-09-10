@@ -13,6 +13,8 @@ router.post('/createList', dashboard.createMaster)
 
 router.post('/addItem', dashboard.addItem)
 
+router.post('/addCategory', dashboard.addCategory)
+
 router.get('/removeItem', dashboard.removeItem)
 
 module.exports = router

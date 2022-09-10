@@ -7,6 +7,34 @@ body {
     align-items: center;
 }
 
+h2 {
+    font-size: 1.2rem;
+}
+
 #categoriesBar {
     flex-wrap: wrap;
+}
+
+#addItemBar {
+    display: block;
+}
+
+#addItemBar form {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#nameInput {
+    width: 18ch;
+}
+
+#priceInput {
+    width: 8ch;
+}
+
+#addItemSubmit {
+    display: block;
+    margin-top: 10px;
+    margin-left: auto;
+    border-radius: 2px;
 }

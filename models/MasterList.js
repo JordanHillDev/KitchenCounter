@@ -44,7 +44,10 @@ const MasterListSchema = new mongoose.Schema({
     },
     items: {
         type: [ItemSchema],
-    }
+    },
+    categories: [{
+        type: String
+    }]
 })
 
 const MasterList = mongoose.model('MasterList', MasterListSchema)
