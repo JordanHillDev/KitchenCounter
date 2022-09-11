@@ -3,8 +3,11 @@
 
         <section id="categoriesBar" class="titleBar">
             <h2>Categories</h2>
-            <select name="category" id="">
+            <select name="category" id="selectCategory">
                 <option value="all">All</option>
+                <%categories.forEach(el => {%>
+                    <option value=<%=el%>><%=el%></option>
+                <%})%>
             </select>
             <form action="/dashboard/addCategory/?listId=<%=listId%>" method="POST">
                 <input type="text" name="categoryName" placeholder="Category">
@@ -29,9 +32,9 @@
 
         <section>
             <ul>
-                <%items.forEach(el => {%>
+                <% items.forEach(el => {%>
                     <li data-itemid=<%=el._id%> data-listid=<%=listId%>>
-                        <span><%=el.name%></span>
+                        <span class="itemName"><%=el.name%></span>
                         <span>$<%=el.price.toFixed(2)%></span>
                         <span><%=el.countedBy%></span>
                         <a class="btn_icon" href="#"><i class="fa-regular fa-pen-to-square"></i></a>

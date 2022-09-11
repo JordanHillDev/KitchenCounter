@@ -38,6 +38,7 @@ module.exports = {
                 listName: list.listName,
                 listId: req.query.listId,
                 items: list.items,
+                categories: list.categories,
             });
         } catch (error) {
             console.log(error);
@@ -47,19 +48,17 @@ module.exports = {
         try {
             const name = req.body.itemName.toLowerCase();
             const price = +req.body.price;
-            console.log(price, typeof price)
             const countedBy = req.body.countedBy;
             const listId = req.query.listId;
             await MasterList.updateOne(
                 { _id: listId },
-                {
-                    $push: {
-                        items: {
-                            name: name,
-                            countedBy: countedBy,
-                            price: price,
-                        },
-                    },
+                { $push: {
+                         items: {
+                             name: name,
+                             countedBy: countedBy,
+                             price: price,
+                         },
+                     },
                 }
             );
             await MasterList.findOneAndUpdate(
