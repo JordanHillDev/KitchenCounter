@@ -30,9 +30,9 @@ module.exports = {
         }
     },
     getEditMaster: async (req, res) => {
-        console.log(req.query);
         try {
             const list = await MasterList.findOne({ _id: req.query.listId });
+            console.log(list.items)
             res.render("editMaster.ejs", {
                 user: req.user,
                 listName: list.listName,
@@ -50,6 +50,8 @@ module.exports = {
             const price = +req.body.price;
             const countedBy = req.body.countedBy;
             const listId = req.query.listId;
+            const category = req.body.category
+            console.log(category)
             await MasterList.updateOne(
                 { _id: listId },
                 { $push: {
@@ -57,6 +59,7 @@ module.exports = {
                              name: name,
                              countedBy: countedBy,
                              price: price,
+                             category: category
                          },
                      },
                 }

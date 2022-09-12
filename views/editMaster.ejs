@@ -25,22 +25,51 @@
                     <option value="Lb.">Lb.</option>
                     <option value="Case">Case</option>
                 </select>
+                <select name="category" id="selectCategory">
+                    <%categories.forEach(el => {%>
+                        <option value=<%=el%>><%=el%></option>
+                    <%})%>
+                </select>
                 <input id="addItemSubmit" class="btn btn_secondary" value="Add" type="submit">
             </form>
         </section>
-        
 
-        <section>
-            <ul>
-                <% items.forEach(el => {%>
-                    <li data-itemid=<%=el._id%> data-listid=<%=listId%>>
-                        <span class="itemName"><%=el.name%></span>
-                        <span>$<%=el.price.toFixed(2)%></span>
-                        <span><%=el.countedBy%></span>
-                        <a class="btn_icon" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
-                        <a class="btn_icon" href="/dashboard/removeItem/?itemId=<%=el._id%>&listId=<%=listId%>"><i class="fa-regular fa-trash-can"></i></a>
-                    </li>
-                <%})%>
-            </ul>
-        </section>
+        <% categories.forEach(el => { %>
+            <section id=<%=el%> class="dropdownBar">
+                <div class="titleBar"><h2><%=el%></h2></div>
+                <section class="dropdownContent">
+                    <ul>
+                        <%items.filter(ea => ea.category === el).forEach(item => {%>
+                            <li data-itemid=<%=item._id%> data-listid=<%=listId%>>
+                                <form action="">
+                                    <span class="itemName"><%=item.name%></span>
+                                    <div>$<input type="number" value=<%=item.price.toFixed(2)%> step="0.01"></div>
+                                    <select name="countedBy" id="updateCountedBy">
+                                        <%["Each", "Lb.", "Case"].forEach(el => {%>
+                                                <%if(el === item.countedBy) {%>
+                                                    <option selected value=<%=el%>><%=el%></option>
+                                                    <%} else{%>
+                                                        <option value=<%=el%>><%=el%></option>
+                                                    <%}%>
+                                            <%})%>
+                                    </select>
+                                    <select name="category" id="updateCategory">
+                                        <%categories.forEach(el => {%>
+                                            <%if(el === item.category) {%>
+                                                <option selected value=<%=el%>><%=el%></option>
+                                                <%} else{%>
+                                                    <option value=<%=el%>><%=el%></option>
+                                                <%}%>
+                                        <%})%>
+                                    </select>
+                                    <a class="btn_icon" href="#"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a class="btn_icon" href="/dashboard/removeItem/?itemId=<%=item._id%>&listId=<%=listId%>"><i class="fa-regular fa-trash-can"></i></a>
+                                </form>
+                            </li>
+                        <%})%>
+                    </ul>
+                   
+                </section>
+            </section>
+        <%})%>
 <%- include('partials/footer') -%>
