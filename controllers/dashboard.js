@@ -32,7 +32,6 @@ module.exports = {
     getEditMaster: async (req, res) => {
         try {
             const list = await MasterList.findOne({ _id: req.query.listId });
-            console.log(list.items)
             res.render("editMaster.ejs", {
                 user: req.user,
                 listName: list.listName,
@@ -50,18 +49,19 @@ module.exports = {
             const price = +req.body.price;
             const countedBy = req.body.countedBy;
             const listId = req.query.listId;
-            const category = req.body.category
-            console.log(category)
+            const category = req.body.category;
+            console.log(category);
             await MasterList.updateOne(
                 { _id: listId },
-                { $push: {
-                         items: {
-                             name: name,
-                             countedBy: countedBy,
-                             price: price,
-                             category: category
-                         },
-                     },
+                {
+                    $push: {
+                        items: {
+                            name: name,
+                            countedBy: countedBy,
+                            price: price,
+                            category: category,
+                        },
+                    },
                 }
             );
             await MasterList.findOneAndUpdate(
@@ -73,10 +73,33 @@ module.exports = {
             console.log(error);
         }
     },
-    removeItem: async (req, res) => {
+    updateItem: async (req, res) => {
+        const listId = req.query.listId;
+        const itemId = req.query.itemId;
+        const price = req.body.price;
+        const category = req.body.category;
+        const countedBy = req.body.countedBy;
+
         try {
-            const itemId = req.query.itemId;
-            const listId = req.query.listId;
+            await MasterList.findOneAndUpdate(
+                { _id: listId, "items._id": itemId },
+                {
+                    $set: {
+                        "items.$.category": category,
+                        "items.$.price": price,
+                        "items.$.countedBy": countedBy,
+                    },
+                }
+            );
+            res.redirect(`../editMaster/?listId=${listId}`);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    removeItem: async (req, res) => {
+        const listId = req.body.listId
+        const itemId = req.body.itemId
+        try {
             await MasterList.updateOne(
                 { _id: listId },
                 { $pull: { items: { _id: itemId } } }
@@ -86,15 +109,16 @@ module.exports = {
                 { _id: listId },
                 { updatedDate: new Date() }
             );
-            res.redirect(`../editMaster/?listId=${listId}`);
+            res.json('Deleted Item')
+            // res.redirect(`/dashboard/editMaster/?listId=${listId}`);
         } catch (error) {
             console.log(error);
         }
     },
     addCategory: async (req, res) => {
+        const categoryName = req.body.categoryName.toLowerCase();
+        const listId = req.query.listId;
         try {
-            const categoryName = req.body.categoryName.toLowerCase();
-            const listId = req.query.listId;
             await MasterList.updateOne(
                 { _id: listId },
                 { $push: { categories: categoryName } }

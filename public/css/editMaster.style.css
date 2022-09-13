@@ -8,24 +8,57 @@ body {
 }
 
 h2 {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
 }
 
 #categoriesBar {
     flex-wrap: wrap;
 }
 
-#addItemBar {
-    display: block;
+.popUpModal {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    gap: 10px; 
+    height: 400px;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: .5rem;
+    box-shadow: 2px 2px 4px 2px gray;
 }
 
-#addItemBar form {
-    margin-top: 10px;
+#addItemModal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;  
+    gap: 10px; 
+}
+
+#removeItemModal {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#removeItemModal p {
     text-align: center;
+    font-size: 2rem;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 #nameInput {
-    width: 18ch;
+    width: 100%;
 }
 
 #priceInput {
@@ -35,6 +68,56 @@ h2 {
 #addItemSubmit {
     display: block;
     margin-top: 10px;
-    margin-left: auto;
+    border-radius: 4px;
+    width: 100%;
+    padding: .4rem;
+}
+
+#listContainer {
+    background-color: var(--primary-light-color);
+    /* text-align: center; */
+}
+
+#categoryFilter {
+    width: 30ch;
+    text-transform: capitalize;
+    margin: 0 auto;
     border-radius: 2px;
+    color: var(--primary-color);
+    font-weight: bold;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+option {
+    text-transform: capitalize;
+}
+
+.eachItemLine {
+    font-weight: bold;
+    color: var(--black-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--black-color);
+    padding:  1rem .5rem;
+}
+
+.eachItemLine div {
+    margin-left: auto;
+}
+
+.priceInput {
+    width: 8ch;
+}
+
+.itemName {
+    width: 10ch;
+}
+
+.categorySelect {
+    margin-left: auto;
 }

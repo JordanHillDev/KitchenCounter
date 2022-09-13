@@ -12,6 +12,7 @@
 
 body {
     font-family: var(--font-regular);
+    color: var(--primary-color);
     background-color: var(--primary-color);
 }
 
@@ -105,11 +106,12 @@ li {
 /* ============ Page Layout ============ */
 /* ===================================== */
 main {
+    position: relative;
     min-height: 80vh;
     width: 100%;
     max-width: 1000px;
     margin-top: 100px;
-    padding: 100px 1rem 1rem 1rem;
+    padding: 100px .5rem 1rem .5rem;
 }
 
 #logoText {
@@ -143,6 +145,7 @@ section {
 .titleBar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0.5rem;
 }
 
@@ -170,6 +173,14 @@ main {
     background-color: var(--primary-color);
 }
 
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
 section {
     background-color: #fff;
     border-radius: 8px;
@@ -182,6 +193,13 @@ section {
 
 .listItem {
     border-bottom: 1px solid rgb(174, 171, 171);
+}
+
+.titleBar h2 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    text-transform: capitalize;
 }
 
 .directionArrow {

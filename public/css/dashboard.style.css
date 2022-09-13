@@ -29,15 +29,7 @@ body {
 /* ======== Additional Styles ========== */
 /* ===================================== */
 
-.titleBar {
-    justify-content: space-between;
-}
 
-.titleBar h2 {
-    font-size: 1rem;
-    color: var(--primary-color);
-    font-weight: bold;
-}
 
 h3 {
     font-size: 1.2rem;
