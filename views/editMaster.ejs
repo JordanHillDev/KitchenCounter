@@ -8,13 +8,13 @@
             <!-- Dropdown to filter categories shown -->
             <select name="category" id="categoryFilter">
                 <option value="all">all</option>
-                <%categories.forEach(el => {%>
+                <%categories.sort().forEach(el => {%>
                     <option value=<%=el%>><%=el%></option>
                 <%})%>
             </select>
             <button id="openAddItemsModal">Add Items</button>
             
-            <% categories.forEach(el => { %>
+            <% categories.sort().forEach(el => { %>
                 <!-- Item Title and Dropdown Bar -->
                 <section id=<%=el%> class="dropdownBar">
                     <div class="titleBar">
@@ -46,7 +46,7 @@
                                         </select>
                                         <!-- Category Select -->
                                         <select name="category" class="categorySelect">
-                                            <%categories.forEach(el => {%>
+                                            <%categories.sort().forEach(el => {%>
                                                 <%if(el === item.category) {%>
                                                     <option selected value=<%=el%>><%=el%></option>
                                                     <%} else{%>
@@ -80,6 +80,15 @@
                     <input type="text" name="categoryName" placeholder="Category">
                     <button type="submit"><i class="fa-solid fa-plus"></i></button>
                 </form>
+                <!-- All Categories List -->
+                <ul>
+                    <%categories.forEach(el => {%>
+                        <li>
+                            <span class="itemName"><%=el%></span>
+                            <button data-catname="<%=el%>" data-listid="<%=listId%>" class="removeCatBtn">Remove</button>
+                        </li>
+                    <%})%>
+                </ul>
             </section>
         </section>
 
@@ -98,7 +107,7 @@
                     <select required name="category" id="selectCategory">
                         <option value="" disabled selected hidden>Category</option>
                         <%categories.forEach(el => {%>
-                            <option value=<%=el%>><%=el%></option>
+                            <option values=<%=el%>><%=el%></option>
                         <%})%>
                     </select>
                 </div>

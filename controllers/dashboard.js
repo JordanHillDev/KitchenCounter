@@ -44,6 +44,7 @@ module.exports = {
         }
     },
     addItem: async (req, res) => {
+        console.log(req.body)
         try {
             const name = req.body.itemName.toLowerCase();
             const price = +req.body.price;
@@ -110,7 +111,6 @@ module.exports = {
                 { updatedDate: new Date() }
             );
             res.json('Deleted Item')
-            // res.redirect(`/dashboard/editMaster/?listId=${listId}`);
         } catch (error) {
             console.log(error);
         }
@@ -128,4 +128,21 @@ module.exports = {
             console.log(error);
         }
     },
+    removeCategory: async (req, res) => {
+        const listId = req.body.listId
+        const category = req.body.category
+       try {
+            await MasterList.updateOne(
+                { _id: listId },
+                { $pull: { categories: category } }
+            );
+            await MasterList.findOneAndUpdate(
+                { _id: listId },
+                { updatedDate: new Date() }
+            );
+            res.json('Deleted Category')
+       } catch (error) {
+        console.log(error)
+       }
+    }
 };
