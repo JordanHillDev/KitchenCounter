@@ -7,12 +7,14 @@
             </div>
     
             <section class="dropdownSection hidden">
-                <% lists.forEach(el => { %>
-                    <li class="listItem" data-id="<%=el._id%>">
-                        <h3><%=el.listName%></h3>
-                        <a class="btn_icon" href="/dashboard/editMaster/?listId=<%=el._id%>"><i class="fa-regular fa-pen-to-square"></i></a>
-                    </li>
-                <% }) %>
+                <ul>
+                    <% lists.forEach(el => { %>
+                        <li class="listItem" data-id="<%=el._id%>">
+                            <h3><%=el.listName%></h3>
+                            <a class="btn_icon" href="/dashboard/editMaster/?listId=<%=el._id%>"><i class="fa-regular fa-pen-to-square"></i></a>
+                        </li>
+                    <% }) %>
+                </ul>
             </section>
         </section>
 
@@ -22,8 +24,29 @@
                 <i class="fa-solid fa-chevron-down arrow"></i>
             </div>
             <section class="dropdownSection hidden">
-                <h1>filler</h1>
+                <ul>
+                    <% entries.forEach(el => { %>
+                        <li class="listItem">
+                            <h3><%= el.listName %></h3>
+                            <form action="/inventory/delete/<%= el._id %>?_method=DELETE" method="POST">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+                
              </section>
         </section>
+
+        <form action="../inventory/createInventory" method="POST">
+            <select name="list" id="selectList">
+                <% lists.forEach(el => { %>
+                    <option value=<%= el._id %>><%= el.listName %></option>
+                <% }) %>
+            </select>
+            <input type="submit">
+        </form>
         <a id="addInvBtn" class="btn btn_secondary" href="#">Add Inventory</a>
+        <a href="/inventory">The Inventory Route</a>
 <%- include('partials/footer') -%>

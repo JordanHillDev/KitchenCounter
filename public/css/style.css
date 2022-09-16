@@ -52,13 +52,17 @@ li {
     display: none;
 }
 
+.titleBar {
+    border-bottom: 2px solid rgba(174, 171, 171, 0);
+    transition: .5s;
+}
+
 .underline {
-    border-bottom: 2px solid rgb(174, 171, 171);
+    border-bottom: 2px solid rgba(174, 171, 171, 1);
 }
 
 .rotate180 {
     transform: rotate(180deg);
-    transition: 0.3s;
 }
 
 /* ===================================== */
@@ -206,6 +210,10 @@ section {
 
 .directionArrow {
     color: var(--primary-color);
+}
+
+.arrow {
+    transition: 0.3s;
 }
 
 .itemName {

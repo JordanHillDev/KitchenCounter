@@ -1,13 +1,15 @@
-const { Timestamp } = require("mongodb");
-const { MasterList, Item } = require("../models/MasterList");
+const MasterList = require("../models/MasterList");
+const Inventory = require('../models/Inventory')
 
 module.exports = {
     getIndex: async (req, res) => {
         try {
             const lists = await MasterList.find({ userId: req.user.id });
+            const entries = await Inventory.find({ userId: req.user.id})
             res.render("dashboard.ejs", {
                 user: req.user,
                 lists: lists,
+                entries: entries
             });
         } catch (error) {
             console.log(err);
@@ -53,7 +55,7 @@ module.exports = {
             const category = req.body.category;
             console.log(category);
             await MasterList.updateOne(
-                { _id: listId },
+                { _id: listId, "items.name": { $ne : name} },
                 {
                     $push: {
                         items: {
@@ -61,6 +63,7 @@ module.exports = {
                             countedBy: countedBy,
                             price: price,
                             category: category,
+                            count: 0
                         },
                     },
                 }
@@ -76,14 +79,14 @@ module.exports = {
     },
     updateItem: async (req, res) => {
         const listId = req.query.listId;
-        const itemId = req.query.itemId;
+        const itemName = req.query.itemName;
         const price = req.body.price;
         const category = req.body.category;
         const countedBy = req.body.countedBy;
 
         try {
             await MasterList.findOneAndUpdate(
-                { _id: listId, "items._id": itemId },
+                { _id: listId, "items.name": itemName },
                 {
                     $set: {
                         "items.$.category": category,
@@ -99,11 +102,11 @@ module.exports = {
     },
     removeItem: async (req, res) => {
         const listId = req.body.listId
-        const itemId = req.body.itemId
+        const itemName = req.body.itemName
         try {
             await MasterList.updateOne(
                 { _id: listId },
-                { $pull: { items: { _id: itemId } } }
+                { $pull: { items: { name: itemName } } }
             );
             console.log("item removed");
             await MasterList.findOneAndUpdate(

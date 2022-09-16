@@ -1,30 +1,5 @@
 const mongoose = require('mongoose')
 
-
-const ItemSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    count: {
-        type: Number
-    },
-    category: {
-        type: String,
-    },
-    countedBy: {
-        type: String,
-        required: true
-    }
-})
-
-
-
 const MasterListSchema = new mongoose.Schema({
     userId: {
         type: String,
@@ -42,14 +17,10 @@ const MasterListSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    items: {
-        type: [ItemSchema],
-    },
+    items: [],
     categories: [{
         type: String
     }]
 })
 
-const MasterList = mongoose.model('MasterList', MasterListSchema)
-const Item = mongoose.model('Item', ItemSchema)
-module.exports = { MasterList, Item }
+module.exports = mongoose.model('MasterList', MasterListSchema)

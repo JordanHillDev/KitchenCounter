@@ -1,0 +1,39 @@
+<%- include('partials/header', {styleSheet: "/css/editMaster.style.css"}); %>   
+<h1><%= inventory.listName %></h1>
+<h2><%= inventory.createdDate.toDateString() %></h2>
+
+<section id="listContainer">
+
+    <% inventory.categories.sort().forEach(el => { %>
+        <section class="dropdownBar">
+            <div class="titleBar">
+                <h2><%= el %></h2>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
+
+            <section class="dropdownSection hidden">
+                <ul>
+                    <% inventory.items.filter(ea => ea.category === el).forEach(item => { %>
+                        <li>
+                            <form action="" class="eachItemLine" method="POST">
+                                <span class="itemName"><%= item.name %></span>
+                                <span><%= item.count %></span>
+                            </form>  <!-- Change to PUT later if possible -->
+                        </li>
+                    <% }) %>
+                </ul>
+            </section>
+        </section>
+    <% }) %>
+</section>
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer') -%>
