@@ -13,8 +13,6 @@ router.get('/createList', dashboard.getCreate)
 
 router.post('/createList', dashboard.createMaster)
 
-router.post('/addItem', dashboard.addItem)
-
 // PUT
 
 router.post('/updateItem', dashboard.updateItem)
@@ -25,7 +23,7 @@ router.post('/addCategory', dashboard.addCategory)
 
 router.delete('/deleteItem/:listId', dashboard.deleteItem)
 
-router.post('/removeCategory', dashboard.removeCategory)
+router.delete('/deleteCategory/:listId', dashboard.removeCategory)
 
 
 

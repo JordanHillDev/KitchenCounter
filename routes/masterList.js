@@ -7,4 +7,13 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.get('/:listId', masterList.getIndex)
 
+//POST
+router.post('/addItem/:listId', masterList.addItem)
+
+
+
+
 module.exports = router
+
+
+

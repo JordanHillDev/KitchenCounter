@@ -71,7 +71,9 @@
                     <% list.categories.forEach(el => { %>
                         <li>
                             <span class="itemName"><%= el %></span>
-                            <button data-catname="<%= el %>" data-listid="<%= listId %>" class="removeCatBtn">Remove</button>
+                            <form action="/dashboard/deleteCategory/<%= listId %>?category=<%= el %>&_method=DELETE" method="POST">
+                                <input type="submit" value="Remove">
+                            </form>
                         </li>
                     <% }) %>
                 </ul>
