@@ -9,8 +9,6 @@ router.get('/', ensureAuth, dashboard.getIndex)
 
 router.get('/createList', dashboard.getCreate)
 
-router.get('/editMaster', dashboard.getEditMaster)
-
 // POST
 
 router.post('/createList', dashboard.createMaster)
@@ -25,7 +23,7 @@ router.post('/addCategory', dashboard.addCategory)
 
 // DELETE
 
-router.post('/removeItem', dashboard.removeItem)
+router.delete('/deleteItem/:listId', dashboard.deleteItem)
 
 router.post('/removeCategory', dashboard.removeCategory)
 

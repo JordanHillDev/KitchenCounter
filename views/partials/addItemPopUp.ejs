@@ -1,6 +1,6 @@
 <section class="popUpModal" id="addItemModal">
             <button class="closeBtn">X</button>
-            <form action="/dashboard/addItem/?listId=<%=listId%>" method="POST">
+            <form action="/dashboard/addItem/?listId=<%= listId %>" method="POST">
                 <input id="nameInput" type="text" placeholder="Item Name" name="itemName">
                 <div>
                     <input id="priceInput" type="number" min="0" step="0.01" placeholder="Price" name="price">
@@ -11,9 +11,9 @@
                     </select>
                     <select required name="category" id="selectCategory">
                         <option value="" disabled selected hidden>Category</option>
-                        <%categories.forEach(el => {%>
-                            <option values=<%=el%>><%=el%></option>
-                        <%})%>
+                        <% list.categories.forEach(el => {%>
+                            <option values=<%= el %>><%= el %></option>
+                        <% }) %>
                     </select>
                 </div>
                 <input id="addItemSubmit" class="btn btn_secondary" value="Add Item" type="submit">

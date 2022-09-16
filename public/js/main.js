@@ -6,7 +6,6 @@ const addItemModal = document.querySelector("#addItemModal");
 const closeModalBtns = document.querySelectorAll(".closeBtn");
 const removeItemBtns = document.querySelectorAll(".removeItemBtn");
 const removeItemModal = document.querySelector("#removeItemModal");
-const deleteBtn = document.querySelector("#deleteBtn");
 const removeCatBtns = document.querySelectorAll(".removeCatBtn");
 
 dropdownBars.forEach((el) => {
@@ -75,26 +74,6 @@ function openRemoveModal(e) {
     removeItemModal.style.display = "flex";
     removeItemModal.dataset.listId = listId;
     removeItemModal.dataset.itemId = itemId;
-}
-
-async function deleteItem(e) {
-    const listId = this.parentNode.dataset.listId;
-    const itemId = this.parentNode.dataset.itemId;
-
-    try {
-        const response = await fetch("/dashboard/removeItem", {
-            method: "post",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-                listId: listId,
-                itemId: itemId,
-            }),
-        });
-        const data = await response.json();
-        location.reload();
-    } catch (error) {
-        console.log(error);
-    }
 }
 
 async function removeCategory(e) {

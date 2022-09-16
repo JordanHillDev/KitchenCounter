@@ -11,7 +11,7 @@
                     <% lists.forEach(el => { %>
                         <li class="listItem" data-id="<%=el._id%>">
                             <h3><%=el.listName%></h3>
-                            <a class="btn_icon" href="/dashboard/editMaster/?listId=<%=el._id%>"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="masterList/<%= el._id %>">Edit</a>
                         </li>
                     <% }) %>
                 </ul>
@@ -29,7 +29,6 @@
                         <li class="listItem">
                             <h3><%= el.listName %></h3>
                             <form action="/inventory/delete/<%= el._id %>?_method=DELETE" method="POST">
-                                <input type="hidden" name="_method" value="DELETE">
                                 <input type="submit" value="Delete">
                             </form>
                         </li>

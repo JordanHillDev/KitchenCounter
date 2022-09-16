@@ -31,20 +31,6 @@ module.exports = {
             console.log(err);
         }
     },
-    getEditMaster: async (req, res) => {
-        try {
-            const list = await MasterList.findOne({ _id: req.query.listId });
-            res.render("editMaster.ejs", {
-                user: req.user,
-                listName: list.listName,
-                listId: req.query.listId,
-                items: list.items,
-                categories: list.categories,
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    },
     addItem: async (req, res) => {
         console.log(req.body)
         try {
@@ -100,20 +86,21 @@ module.exports = {
             console.log(error);
         }
     },
-    removeItem: async (req, res) => {
-        const listId = req.body.listId
-        const itemName = req.body.itemName
+    deleteItem: async (req, res) => {
+        const listId = req.params.id
+        const item = req.query.item
+        console.log(listId, item)
         try {
             await MasterList.updateOne(
                 { _id: listId },
-                { $pull: { items: { name: itemName } } }
+                { $pull: { items: { name: item } } }
             );
             console.log("item removed");
             await MasterList.findOneAndUpdate(
                 { _id: listId },
                 { updatedDate: new Date() }
             );
-            res.json('Deleted Item')
+            res.redirect(`../editMaster/?listId=${listId}`)
         } catch (error) {
             console.log(error);
         }

@@ -10,6 +10,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const dashboardRoutes = require('./routes/dashboard')
+const masterListRoutes = require('./routes/masterList')
 const inventoryRoutes = require('./routes/inventory')
 
 require('dotenv').config({path: './config/config.env'})
@@ -43,6 +44,7 @@ app.use(flash())
   
 app.use('/', mainRoutes)
 app.use('/dashboard', dashboardRoutes)
+app.use('/masterList', masterListRoutes)
 app.use('/inventory', inventoryRoutes)
  
 app.listen(process.env.PORT, ()=>{
