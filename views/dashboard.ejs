@@ -1,51 +1,74 @@
 <%- include('partials/header', {styleSheet: "/css/dashboard.style.css"}); %>   
-        <section class="dropdownBar">
-            <div class="titleBar">
-                <h2>Master Lists</h2>
-                <a id="addMasterBtn" href="/dashboard/createList" class="btn_icon"><i class="fa-solid fa-plus"></i></a>
-                <i class="fa-solid fa-chevron-down arrow"></i>
-            </div>
-    
-            <section class="dropdownSection hidden">
-                <ul>
-                    <% lists.forEach(el => { %>
-                        <li class="listItem" data-id="<%=el._id%>">
-                            <h3><%=el.listName%></h3>
-                            <a href="masterList/<%= el._id %>">Edit</a>
-                        </li>
-                    <% }) %>
-                </ul>
-            </section>
-        </section>
 
-        <section class="dropdownBar">
-            <div class="titleBar">
-                <h2>Entries</h2>
-                <i class="fa-solid fa-chevron-down arrow"></i>
-            </div>
-            <section class="dropdownSection hidden">
-                <ul>
-                    <% entries.forEach(el => { %>
-                        <li class="listItem">
-                            <h3><%= el.listName %></h3>
-                            <form action="/inventory/delete/<%= el._id %>?_method=DELETE" method="POST">
-                                <input type="submit" value="Delete">
-                            </form>
-                        </li>
-                    <% }) %>
-                </ul>
-                
-             </section>
-        </section>
+<section class="dropdownBar">
+    <div class="titleBar">
+        <h2>Master Lists</h2>
+        
+        <i class="fa-solid fa-chevron-down arrow"></i>
+    </div>
 
-        <form action="../inventory/createInventory" method="POST">
-            <select name="list" id="selectList">
-                <% lists.forEach(el => { %>
-                    <option value=<%= el._id %>><%= el.listName %></option>
-                <% }) %>
-            </select>
-            <input type="submit">
-        </form>
-        <a id="addInvBtn" class="btn btn_secondary" href="#">Add Inventory</a>
-        <a href="/inventory">The Inventory Route</a>
+    <section class="dropdownSection hidden">
+        <ul>
+            <% lists.forEach(el => { %>
+                <li class="listItem" data-id="<%=el._id%>">
+                    <h3><%=el.listName%></h3>
+                    <a href="masterList/<%= el._id %>">Edit</a>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
+</section>
+<button id="createListBtn">Create</button>
+
+<section class="dropdownBar">
+    <div class="titleBar">
+        <h2>Entries</h2>
+        <i class="fa-solid fa-chevron-down arrow"></i>
+    </div>
+    <section class="dropdownSection hidden">
+        <ul>
+            <% entries.forEach(el => { %>
+                <li class="listItem">
+                    <h3><%= el.listName %></h3>
+                    <form 
+                        action="/inventory/delete/<%= el._id %>?_method=DELETE" 
+                        method="POST">
+                        <input type="submit" value="Delete">
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+        
+        </section>
+</section>
+
+<form 
+    action="../inventory/createInventory" 
+    method="POST">
+    <select name="list" id="selectList">
+        <% lists.forEach(el => { %>
+            <option value=<%= el._id %>>
+                <%= el.listName %>
+            </option>
+        <% }) %>
+    </select>
+    <input type="submit">
+</form>
+
+<a id="addInvBtn" class="btn btn_secondary" href="#">Add Inventory</a>
+
+<section class="popUpModal" id="createListModal">
+    <button class="closeBtn">X</button>
+    <h2>Create New List</h2>
+    <form action="/masterList/create" method="POST">
+        <input type="text" placeholder="Enter Master List Name" name="listName">
+        <input type="submit" value="Create">
+    </form>
+</section>
+
 <%- include('partials/footer') -%>
+
+
+
+
+

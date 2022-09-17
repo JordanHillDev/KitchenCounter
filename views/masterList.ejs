@@ -1,77 +1,64 @@
 <%- include('partials/header', {styleSheet: "/css/editMaster.style.css"}); %>
-        <h1><%= list.listName %></h1>
+<h1><%= list.listName %></h1>
 
-        <section id="listContainer">
-            <h2>Items</h2>
-            
-            <select name="category" id="categoryFilter">
-                <option value="all">all</option>
-                <% list.categories.sort().forEach(el => { %>
-                    <option value=<%= el %>><%= el %></option>
-                <% }) %>
-            </select>
+<section id="listContainer">
+    <h2>Items</h2>
+    
+    <select name="category" id="categoryFilter">
+        <option value="all">all</option>
+        <% list.categories.sort().forEach(el => { %>
+            <option value=<%= el %>>
+                <%= el %>
+            </option>
+        <% }) %>
+    </select>
 
-            <button id="openAddItemsModal">Add Items</button>
+    <button id="openAddItemsModal">Add Items</button>
+    
+    <% list.categories.sort().forEach(category => { %>
+        <section id=<%= category %> class="dropdownBar">
+            <div class="titleBar">
+                <h2><%= category %></h2>
+                <i class="fa-solid fa-chevron-down arrow"></i>
+            </div>
             
-            <% list.categories.sort().forEach(category => { %>
-                <section id=<%= category %> class="dropdownBar">
-                    <div class="titleBar">
-                        <h2><%= category %></h2>
-                        <i class="fa-solid fa-chevron-down arrow"></i>
-                    </div>
-                    <section class="dropdownSection hidden">
-                        <ul>
-                            <% list.items.filter(ea => ea.category === category).forEach(item => { %>
-                                <li data-listid=<%= listId %>>                                    
-                                    <form class="eachItemLine" action="/dashboard/updateItem/?itemName=<%= item.name %>&listId=<%= listId %>" method="POST">                                        
-                                        <span class="itemName"><%= item.name %></span>                                     
-                                        <input name="price" class='priceInput' type="number" value=<%= parseFloat(item.price).toFixed(2) %> step="0.01">                                    
-                                        <select name="countedBy" class="countedBy">
-                                            <% ["Each", "Lb.", "Case"].forEach(el => { %>
-                                                <% if(el === item.countedBy) { %>
-                                                    <option selected value=<%= el %>><%= el %></option>
+            <section class="dropdownSection hidden">
+                <ul>
+                    <% list.items.filter(ea => ea.category === category).forEach(item => { %>
+                        <li data-listid=<%= listId %>>                                    
+                            <form 
+                                class="eachItemLine" 
+                                action="/masterList/updateItem/<%= listId %>?itemName=<%= item.name %>" 
+                                method="POST">                                        
+                                    <span class="itemName"><%= item.name %></span>                                     
+                                    <input 
+                                        name="price" 
+                                        class='priceInput' 
+                                        type="number" 
+                                        value=<%= parseFloat(item.price).toFixed(2) %> 
+                                        step="0.01"
+                                        >                                    
+                                    <select name="countedBy" class="countedBy">
+                                        <% ["Each", "Lb.", "Case"].forEach(el => { %>
+                                            <% if(el === item.countedBy) { %>
+                                                <option selected value=<%= el %>><%= el %></option>
+                                            <% } else{ %>
+                                                <option value=<%= el %>><%= el %></option>
+                                            <% } %>
+                                        <% }) %>
+                                    </select>                                     
+                                    <select name="category" class="categorySelect">
+                                        <% list.categories.sort().forEach(el => { %>
+                                            <% if(el === item.category) { %>
+                                                <option selected value=<%= el %>><%= el %></option>
                                                 <% } else{ %>
                                                     <option value=<%= el %>><%= el %></option>
                                                 <% } %>
-                                            <% }) %>
-                                        </select>                                     
-                                        <select name="category" class="categorySelect">
-                                            <% list.categories.sort().forEach(el => { %>
-                                                <% if(el === item.category) { %>
-                                                    <option selected value=<%= el %>><%= el %></option>
-                                                    <% } else{ %>
-                                                        <option value=<%= el %>><%= el %></option>
-                                                    <% } %>
-                                            <% }) %>
-                                        </select>                                        
-                                        <input type="submit" value="Submit">
-                                    </form>
-                                    <form action="/dashboard/deleteItem/<%= listId %>?item=<%= item.name  %>&_method=DELETE" method="POST">
-                                        <input type="submit" value="Remove">
-                                    </form>
-                                </li>
-                            <% }) %>
-                        </ul>
-                    </section>
-                </section>
-            <% }) %>
-        </section>
-
-        <section id="categoriesBar" class="dropdownBar">
-            <div class="titleBar">
-                <h2>Categories</h2>
-                <i class="fa-solid fa-chevron-down arrow"></i>
-            </div>
-            <section class="dropdownSection hidden">
-                <form action="/dashboard/addCategory/?listId=<%= listId %>" method="POST">
-                    <input type="text" name="categoryName" placeholder="Category">
-                    <button type="submit"><i class="fa-solid fa-plus"></i></button>
-                </form>
-                <ul>
-                    <% list.categories.forEach(el => { %>
-                        <li>
-                            <span class="itemName"><%= el %></span>
-                            <form action="/dashboard/deleteCategory/<%= listId %>?category=<%= el %>&_method=DELETE" method="POST">
+                                        <% }) %>
+                                    </select>                                        
+                                    <input type="submit" value="Submit">
+                            </form>
+                            <form action="/masterList/removeItem/<%= listId %>?item=<%= item.name  %>&_method=DELETE" method="POST">
                                 <input type="submit" value="Remove">
                             </form>
                         </li>
@@ -79,7 +66,38 @@
                 </ul>
             </section>
         </section>
+    <% }) %>
+</section>
 
-        <%- include('partials/addItemPopUp.ejs') %>
+<section id="categoriesBar" class="dropdownBar">
+    <div class="titleBar">
+        <h2>Categories</h2>
+        <i class="fa-solid fa-chevron-down arrow"></i>
+    </div>
+    
+    <section class="dropdownSection hidden">
+        <form action="/masterList/addCategory/<%= listId %>" method="POST">
+            <input  required type="text" name="categoryName" placeholder="Category">
+            <button type="submit"><i class="fa-solid fa-plus"></i></button>
+        </form>
+        
+        <ul>
+            <% list.categories.forEach(el => { %>
+                <li>
+                    <span class="itemName"><%= el %></span>
+                    <form 
+                        action="/masterList/removeCategory/<%= listId %>?category=<%= el %>&_method=DELETE" 
+                        method="POST">
+                        <input 
+                            type="submit" 
+                            value="Remove">
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    </section>
+</section>
+
+<%- include('partials/addItemPopUp.ejs') %>
     
 <%- include('partials/footer') -%>
