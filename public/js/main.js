@@ -7,6 +7,7 @@ const selectCategory    = document.querySelector("#categoryFilter");
 const dropdownBars      = document.querySelectorAll(".dropdownBar");
 const decreaseBtns      = document.querySelectorAll('.decreaseBtn')
 const increaseBtns      = document.querySelectorAll('.increaseBtn')
+const submitUpdateBtns  = document.querySelectorAll('.submitInput')
 
 if(openAddItemsModal) openAddItemsModal.addEventListener("click", openAddItemModal);
 if(createListBtn)     createListBtn.addEventListener('click', openCreateListModal)
@@ -15,6 +16,9 @@ if(selectCategory)    selectCategory.addEventListener("change", filterCategories
 if(dropdownBars)      dropdownBars.forEach(el => el.addEventListener("click", showDropdownContent));
 if(decreaseBtns)      decreaseBtns.forEach(el => el.addEventListener('click', decreaseInputValue))
 if(increaseBtns)      increaseBtns.forEach(el => el.addEventListener('click', increaseInputValue))
+if(submitUpdateBtns)  submitUpdateBtns.forEach(el => el.addEventListener('click', updateInventory))
+
+console.log(submitUpdateBtns[0].parentNode.action)
 
 function openAddItemModal() {
     addItemModal.style.display = "flex";
@@ -82,6 +86,33 @@ function timeoutInput(e) {
     }
 }
 
-
+async function updateInventory(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const form = e.target.parentNode
+    const action = form.action
+    const listItem = form.parentNode.parentNode
+    const numberInput = form.querySelector('.numberInput')
+    const count = numberInput.value
+    const itemCountSpan = listItem.querySelector('.itemCount')
+    const checkmark = listItem.querySelector('.checkmark')
+    console.log(checkmark)
+    try {
+        const response = await fetch(action, {
+            method: 'put',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                "count": count 
+            })
+        })
+        const data = await response.json()
+        numberInput.value = 1
+        itemCountSpan.textContent = data.newCount
+        checkmark.classList.remove('hidden')
+        setTimeout(() => checkmark.classList.add('hidden'), 2000)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 

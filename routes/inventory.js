@@ -7,6 +7,8 @@ router.get('/:id', inventory.getIndex)
 
 router.post('/createInventory', inventory.createInventory)
 
+router.put('/update/:listId', inventory.updateInventory)
+
 router.delete('/delete/:id', inventory.deleteInventory)
 
 module.exports = router

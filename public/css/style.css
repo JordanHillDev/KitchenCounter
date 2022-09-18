@@ -43,6 +43,12 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+button, input[type=submit] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+
 /* ===================================== */
 /* ============= Variables ============= */
 /* ===================================== */
@@ -60,6 +66,10 @@ input[type=number] {
 /* ===================================== */
 .hidden {
     display: none;
+}
+
+.visibleInline {
+    display: inline;
 }
 
 .titleBar {
@@ -266,6 +276,9 @@ section {
     text-transform: capitalize;
 }
 
+.checkmark {
+    color: #439a43;
+}
 
 /* ===================================== */
 /* =========== Media Queries =========== */

@@ -6,7 +6,7 @@ module.exports = {
         const listId = req.params.id
         try {
             const inventory = await Inventory.findOne({ _id: listId })
-            res.render("inventory.ejs", { inventory: inventory });
+            res.render("inventory.ejs", { inventory: inventory, listId: listId });
         } catch (error) {
             console.log(error)
         }
@@ -35,6 +35,22 @@ module.exports = {
             res.redirect('/dashboard')
         } catch (error) {
            console.log(error) 
+        }
+    },
+    updateInventory: async (req, res) => {
+        const listId = req.params.listId;
+        const item = req.query.itemName;
+        const count = req.body.count;
+        try {
+            const incrementedCount = await Inventory.findOneAndUpdate(
+                { _id: req.params.listId, "items.name": req.query.itemName },
+                { $inc: { "items.$.count": +req.body.count} }, 
+                { new: true }
+            )
+            const newCount = incrementedCount.items.find(obj => obj.name === item).count
+            res.json({ newCount: newCount})
+        } catch (error) {
+            console.log(error)
         }
     }
 };
