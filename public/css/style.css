@@ -31,6 +31,18 @@ li {
     list-style-type: none;
 }
 
+/* hide incrementers in inputs */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 /* ===================================== */
 /* ============= Variables ============= */
 /* ===================================== */
@@ -61,6 +73,12 @@ li {
 
 .rotate180 {
     transform: rotate(180deg);
+}
+
+.disabled {
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.5
 }
 
 /* ===================================== */

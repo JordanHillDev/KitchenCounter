@@ -1,4 +1,4 @@
-<%- include('partials/header', {styleSheet: "/css/editMaster.style.css"}); %>   
+<%- include('partials/header', {styleSheet: "/css/inventory.style.css"}); %>   
 <h1><%= inventory.listName %></h1>
 <h2><%= inventory.createdDate.toDateString() %></h2>
 
@@ -14,10 +14,19 @@
             <section class="dropdownSection hidden">
                 <ul>
                     <% inventory.items.filter(ea => ea.category === el).forEach(item => { %>
-                        <li>
-                            <form action="" class="eachItemLine" method="POST">
-                                <span class="itemName"><%= item.name %></span>
-                                <span><%= item.count %></span>
+                        <li class="eachItemLine dropdownBar">
+                            <span class="itemName"><%= item.name %></span>
+                            <span class="itemCount"><%= item.count %></span>
+                            <span><%= item.countedBy %></span>
+                            <i class="fa-solid fa-chevron-down arrow"></i>
+                            <section class="dropdownSection"></section>
+                            <form action="" method="POST">
+                                <div class="numberInputContainer">
+                                    <button class="decreaseBtn">-</i></button>
+                                    <input class="numberInput" type="number" value="1">
+                                    <button class="increaseBtn">+</i></button>
+                                </div>
+                                <input type="submit" value="Add">
                             </form>  <!-- Change to PUT later if possible -->
                         </li>
                     <% }) %>

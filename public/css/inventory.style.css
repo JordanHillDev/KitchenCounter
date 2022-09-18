@@ -1,0 +1,27 @@
+.eachItemLine {
+    font-weight: bold;
+    color: var(--black-color);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid var(--black-color);
+    padding:  1rem .5rem;
+}
+
+.itemCount {
+    margin-left: auto;
+}
+
+.numberInput {
+    width: 10ch;
+    text-align: center;
+}
+
+.increaseBtn, .decreaseBtn {
+    position: relative;
+    z-index: 2;
+    padding: .5rem
+}

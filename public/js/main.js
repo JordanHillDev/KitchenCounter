@@ -5,13 +5,16 @@ const createListModal   = document.querySelector('#createListModal')
 const closeModalBtns    = document.querySelectorAll(".closeBtn");
 const selectCategory    = document.querySelector("#categoryFilter");
 const dropdownBars      = document.querySelectorAll(".dropdownBar");
+const decreaseBtns      = document.querySelectorAll('.decreaseBtn')
+const increaseBtns      = document.querySelectorAll('.increaseBtn')
 
 if(openAddItemsModal) openAddItemsModal.addEventListener("click", openAddItemModal);
 if(createListBtn)     createListBtn.addEventListener('click', openCreateListModal)
 if(closeModalBtns)    closeModalBtns.forEach(el => el.addEventListener("click", closeModal))
 if(selectCategory)    selectCategory.addEventListener("change", filterCategories);
 if(dropdownBars)      dropdownBars.forEach(el => el.addEventListener("click", showDropdownContent));
-
+if(decreaseBtns)      decreaseBtns.forEach(el => el.addEventListener('click', decreaseInputValue))
+if(increaseBtns)      increaseBtns.forEach(el => el.addEventListener('click', increaseInputValue))
 
 function openAddItemModal() {
     addItemModal.style.display = "flex";
@@ -54,9 +57,30 @@ function showDropdownContent(e) {
     arrow.classList.toggle("rotate180");
 }
 
+function decreaseInputValue(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const input = e.target.parentNode.querySelector('.numberInput')
+    if(input.value > 0) {
+        input.value = +input.value - 1;
+    }
+    timeoutInput(e)
+}
 
+function increaseInputValue(e) {
+    e.preventDefault()
+    e.stopPropagation()
+    const input = e.target.parentNode.querySelector('.numberInput')
+    input.value = +input.value + 1
+    timeoutInput(e)
+}
 
-
+function timeoutInput(e) {
+    if(!e.target.classList.contains("disabled")) {
+        e.target.classList.add("disabled")
+        setTimeout(() => e.target.classList.remove('disabled'), 100)
+    }
+}
 
 
 
