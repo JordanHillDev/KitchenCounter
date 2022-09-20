@@ -3,7 +3,6 @@
 <h2><%= inventory.createdDate.toDateString() %></h2>
 
 <section id="listContainer">
-
     <% inventory.categories.sort().forEach(el => { %>
         <section class="dropdownBar">
             <div class="titleBar">
@@ -13,20 +12,25 @@
 
             <section class="dropdownSection hidden">
                 <ul>
-                    <% inventory.items.filter(ea => ea.category === el).forEach(item => { %>
-                        <li class="eachItemLine dropdownBar">
-                            <span class="itemName"><%= item.name %> <span class="checkmark hidden"><i class="fa-solid fa-check"></i></span></span>
-                            <span class="itemCount"><%= item.count %></span>
-                            <span><%= item.countedBy %></span>
-                            <i class="fa-solid fa-chevron-down arrow"></i>
-                            <section class="dropdownSection">
-                                <form action="/inventory/update/<%= listId %>?itemName=<%= item.name %>" method="POST">
-                                        <button class="decreaseBtn">-</i></button>
-                                        <input class="numberInput" type="number" value="1">
-                                        <button class="increaseBtn">+</i></button>
-                                        <input class="submitInput" type="submit" value="Add">
-                                </form> 
+                    <% inventory.items.filter(ea => ea.category === el).sort((a, b) => a.name.localeCompare(b.name)).forEach(item => { %>
+                        <li class="eachItemLine">
+                            <section class="dropdownBar">
+                                <div class="titleBar">
+                                    <span class="itemName"><%= item.name %> <span class="checkmark hidden"><i class="fa-solid fa-check"></i></span></span>
+                                    <span class="itemCount"><%= item.count %></span>
+                                    <span><%= item.countedBy %></span>
+                                    <i class="fa-solid fa-chevron-down arrow"></i>
+                                </div>
+                                <section class="dropdownSection hidden">
+                                    <form action="/inventory/update/<%= listId %>?itemName=<%= item.name %>" method="POST">
+                                            <button class="decreaseBtn">-</i></button>
+                                            <input class="numberInput" type="number" value="1">
+                                            <button class="increaseBtn">+</i></button>
+                                            <input class="submitInput" type="submit" value="Add">
+                                    </form> 
+                                </section>
                             </section>
+                            
                         </li>
                     <% }) %>
                 </ul>

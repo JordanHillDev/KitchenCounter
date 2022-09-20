@@ -1,0 +1,63 @@
+<%- include('partials/header', {styleSheet: "/css/inventoryMobile.style.css"}); %>
+<h1><%= inventory.listName %></h1>
+<h2><%= inventory.createdDate.toDateString() %></h2>
+
+<select name="category" id="categoryFilter">
+    <option value="all">All</option>
+    <% inventory.categories.sort().forEach(el => { %>
+        <option value=<%= el %>>
+            <%= el[0].toUpperCase() + el.slice(1) %>
+        </option>
+    <% }) %>
+</select>
+
+<section id="listContainer">
+    <!-- probably where radio menu will start -->
+        <% inventory.categories.sort().forEach(category => { %>
+            <section class="dropdownBar">
+                <div class="titleBar">
+                    <h2><%= category %></h2>
+                    <i class="fa-solid fa-chevron-down arrow"></i>
+                </div>
+
+                <section class="dropdownSection hidden">
+                    <ul>
+                        <% inventory.items.filter(ea => ea.category === category).sort((a, b) => a - b).forEach(item => { %>
+                            <li class="eachItemLine">
+                                <label for=<%= item.name.split(' ').join('_') %>>
+                                    <div class="itemLabel">
+                                        <%= item.name %>
+                                        <span class="checkmark hidden"><i class="fa-solid fa-check"></i></span>
+                                    </div>
+                                    <div>
+                                        <span class="itemCount"><%= item.count %></span>
+                                        <% if(item.count > 1 && item.countedBy === 'Case') { %>
+                                            <span class="countedBy">Cases</span>
+                                        <% } else {%>
+                                            <span class="countedBy"><%= item.countedBy %></span>
+                                        <% } %>
+                                        <span class="countedBy"></span>
+                                    </div>
+                                    <input type="radio" class="radio" id=<%= item.name.split(' ').join('_') %> name="name">
+                                </label>
+                                
+                            </li>
+                        <% }) %>
+                    </ul>
+                </section>
+            </section>
+        <% }) %>
+</section>
+
+<div id="addInvForm">
+    <form action="/inventory/update/<%= listId %>" method="POST">
+        <button class="decreaseBtn"><i class="fa-solid fa-minus"></i></button>
+        <input class="numberInput" type="number" value="1">
+        <button class="increaseBtn"><i class="fa-solid fa-plus"></i></button>
+        <input class="submitInput" type="submit" value="Add">
+    </form> 
+</div>
+
+
+
+<%- include('partials/footer') -%>

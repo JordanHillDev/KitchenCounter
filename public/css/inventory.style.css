@@ -36,3 +36,19 @@
 .submitInput {
     padding: 1rem
 }
+
+#listContainer, .dropdownSection {
+    background-color: var(--primary-light-color);
+}
+
+.dropdownBar .dropdownSection {
+    background-color: white;
+}
+
+.dropdownBar .dropdownBar{
+    margin: 0;
+}
+
+.dropdownSection ul li{
+    padding: 0;
+}

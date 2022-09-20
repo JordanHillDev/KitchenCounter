@@ -54,6 +54,7 @@ button, input[type=submit] {
 /* ===================================== */
 :root {
     --primary-color: hsl(275, 61%, 32%);
+    --primary-opaque-color: hsla(275, 61%, 32%, 0.5);
     --primary-light-color: hsl(276, 29%, 80%);
     --accent-color: hsl(43, 100%, 49%);
     --black-color: #3b3b3b;

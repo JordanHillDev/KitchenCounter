@@ -6,7 +6,7 @@ module.exports = {
         const listId = req.params.id
         try {
             const inventory = await Inventory.findOne({ _id: listId })
-            res.render("inventory.ejs", { inventory: inventory, listId: listId });
+            res.render("inventoryMobile.ejs", { inventory: inventory, listId: listId });
         } catch (error) {
             console.log(error)
         }
@@ -39,16 +39,16 @@ module.exports = {
     },
     updateInventory: async (req, res) => {
         const listId = req.params.listId;
-        const item = req.query.itemName;
-        const count = req.body.count;
+        const itemName = req.query.itemName;
+        const count = +req.body.count;
         try {
             const incrementedCount = await Inventory.findOneAndUpdate(
-                { _id: req.params.listId, "items.name": req.query.itemName },
-                { $inc: { "items.$.count": +req.body.count} }, 
+                { _id: listId, "items.name": itemName },
+                { $inc: { "items.$.count": count} }, 
                 { new: true }
             )
-            const newCount = incrementedCount.items.find(obj => obj.name === item).count
-            res.json({ newCount: newCount})
+            const newCount = incrementedCount.items.find(obj => obj.name === itemName).count
+            res.json({ newCount: newCount })
         } catch (error) {
             console.log(error)
         }
