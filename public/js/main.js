@@ -156,7 +156,7 @@ function selectRadioBtn(e) {
     e.stopPropagation();
     for (radio of radioBtns) {
         radio.checked
-            ? (radio.parentNode.style.color = "green")
-            : (radio.parentNode.style.color = "black");
+            ? radio.parentNode.classList.add('selected')
+            : radio.parentNode.classList.remove('selected');
     }
 }
