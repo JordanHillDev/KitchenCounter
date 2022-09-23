@@ -1,6 +1,8 @@
 <%- include('partials/header', {styleSheet: "/css/inventory.style.css"}); %>   
-<h1><%= inventory.listName %></h1>
-<h2><%= inventory.createdDate.toDateString() %></h2>
+<header>
+    <h1><%= inventory.listName %></h1>
+    <span><%= inventory.createdDate.toDateString() %></span>
+</header>
 
 <section id="listContainer">
     <% inventory.categories.sort().forEach(el => { %>

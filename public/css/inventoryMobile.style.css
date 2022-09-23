@@ -27,9 +27,10 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: 100px;
+    max-width: 380px;
+    margin-left: auto;
+    height: 90px;
     display: flex;
-    /* justify-content: center; */
     align-items: flex-start;
     padding: 1rem;
 }
@@ -51,20 +52,22 @@
 .increaseBtn, .decreaseBtn {
     padding: 1rem;
      border-radius: 10em; 
-    /* font-size: 2rem; */
     font-weight: bold;
     height: 50px;
     width: 50px;
     text-align: center;
     background-color: var(--accent-color);
-    color: var(--primary-color) 
+    color: var(--primary-color);
+    outline: none; 
+    border: none;
+    
 }
 
 i {
     pointer-events: none;
 }
 
-.submitInput {
+.submitInputMobile {
     margin-left: auto;
     padding: 1rem;
     border-radius: 1em;
@@ -94,4 +97,115 @@ li {
 .selected {
    background-color: var(--primary-opaque-color);
    color: white;
+}
+
+.selected .itemCount {
+    color: white;
+}
+
+.selected .countedBy {
+    color: var(--primary-color);
+}
+
+header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.itemCount {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+.countedBy {
+    font-size: .8rem;
+}
+
+.countContainer {
+    display: flex;
+    align-items: center;
+}
+
+.titleBar > * {
+    pointer-events: none;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.2rem 0 .5rem;
+    font-size: .8rem;
+    margin-bottom: 1rem;
+}
+
+.labels > * {
+    text-decoration: underline;
+}
+
+.priceLabel,
+.price {
+    display: none;
+    position: absolute;
+    left: 200px;
+}
+
+.totalLabel,
+.totalDollar {
+    display: none;
+    position: absolute;
+    left: 300px;
+}
+
+.price,
+.totalDollar  {
+    font-size: .8rem;
+}
+
+.inlineAddForm {
+    display: none;
+    position: absolute;
+    right: 200px;
+}
+
+.inlineNumInput {
+    width: 75px;
+    text-align: center;
+}
+
+.inlineSubmit {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    background-color: #94e22b;
+    color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 475px) {
+    .priceLabel,
+    .price {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 525px) {
+    .totalLabel,
+    .totalDollar {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .inlineAddForm {
+        display: block;
+    }
+
+    #addInvForm {
+        display: none;
+    }
 }

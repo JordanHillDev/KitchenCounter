@@ -3,6 +3,9 @@ const MasterList = require("../models/MasterList");
 
 module.exports = {
     getIndex: async (req, res) => {
+        const isMobile = req.headers['user-agent'];
+        console.log(isMobile)
+        
         const listId = req.params.id
         try {
             const inventory = await Inventory.findOne({ _id: listId })

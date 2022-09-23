@@ -4,10 +4,11 @@ const createListBtn     = document.querySelector("#createListBtn");
 const createListModal   = document.querySelector("#createListModal");
 const closeModalBtns    = document.querySelectorAll(".closeBtn");
 const selectCategory    = document.querySelector("#categoryFilter");
-const dropdownBars      = document.querySelectorAll(".dropdownBar");
+const dropdownBars      = document.querySelectorAll(".titleBar");
 const decreaseBtns      = document.querySelectorAll(".decreaseBtn");
 const increaseBtns      = document.querySelectorAll(".increaseBtn");
 const submitUpdateBtns  = document.querySelectorAll(".submitInput");
+const submitMobileBtn  = document.querySelector('.submitInputMobile')
 const radioBtns         = document.querySelectorAll(".radio");
 
 if (openAddItemsModal) openAddItemsModal.addEventListener("click", openAddItemModal);
@@ -17,7 +18,8 @@ if (selectCategory)    selectCategory.addEventListener("change", filterCategorie
 if (dropdownBars)      dropdownBars.forEach((el) =>el.addEventListener("click", showDropdownContent));
 if (decreaseBtns)      decreaseBtns.forEach((el) => el.addEventListener("click", decreaseInputValue));
 if (increaseBtns)      increaseBtns.forEach((el) =>el.addEventListener("click", increaseInputValue) );
-if (submitUpdateBtns)  submitUpdateBtns.forEach((el) => el.addEventListener("click", updateInventoryMobile)); //change back to updateInventory
+if (submitUpdateBtns)  submitUpdateBtns.forEach((el) => el.addEventListener("click", updateInventory)); 
+if (submitMobileBtn)   submitMobileBtn.addEventListener("click", updateInventoryMobile); 
 if (radioBtns)         radioBtns.forEach((el) => el.addEventListener("change", selectRadioBtn));
 
 
@@ -96,21 +98,23 @@ async function updateInventory(e) {
     const count = numberInput.value;
     const itemCountSpan = listItem.querySelector(".itemCount");
     const checkmark = listItem.querySelector(".checkmark");
-    try {
-        const response = await fetch(action, {
-            method: "put",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-                count: count,
-            }),
-        });
-        const data = await response.json();
-        numberInput.value = 1;
-        itemCountSpan.textContent = data.newCount;
-        checkmark.classList.remove("hidden");
-        setTimeout(() => checkmark.classList.add("hidden"), 2000);
-    } catch (error) {
-        console.log(error);
+    if(+itemCountSpan.innerText + +count >= 0) { //makes sure count can't go below 0
+        try {
+            const response = await fetch(action, {
+                method: "put",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({
+                    count: count,
+                }),
+            });
+            const data = await response.json();
+            numberInput.value = 1;
+            itemCountSpan.textContent = data.newCount;
+            checkmark.classList.remove("hidden");
+            setTimeout(() => checkmark.classList.add("hidden"), 2000);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 
@@ -126,29 +130,32 @@ async function updateInventoryMobile(e) {
     const checkmark = itemSelected.parentNode.querySelector(".checkmark");
     const itemCountSpan = itemSelected.parentNode.querySelector(".itemCount");
     const countedBySpan = itemSelected.parentNode.querySelector(".countedBy");
-    try {
-        const response = await fetch(route, {
-            method: "put",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-                count: count,
-            }),
-        });
-        const data = await response.json();
-        numberInput.value = 1;
-        itemCountSpan.textContent = data.newCount;
-        if (
-            countedBySpan.innerText === "Case" ||
-            countedBySpan.innerText === "Cases"
-        ) {
-            data.newCount > 1
-                ? (countedBySpan.innerText = "Cases")
-                : (countedBySpan.innerText = "Case");
+    
+    if(+itemCountSpan.innerText + +count >= 0) { //makes sure count can't go below 0
+        try {
+            const response = await fetch(route, {
+                method: "put",
+                headers: { "Content-type": "application/json" },
+                body: JSON.stringify({
+                    count: count,
+                }),
+            });
+            const data = await response.json();
+            numberInput.value = 1;
+            itemCountSpan.textContent = data.newCount;
+            if (
+                countedBySpan.innerText === "Case" ||
+                countedBySpan.innerText === "Cases"
+            ) {
+                data.newCount > 1
+                    ? (countedBySpan.innerText = "Cases")
+                    : (countedBySpan.innerText = "Case");
+            }
+            checkmark.classList.remove("hidden");
+            setTimeout(() => checkmark.classList.add("hidden"), 2000);
+        } catch (error) {
+            console.log(error);
         }
-        checkmark.classList.remove("hidden");
-        setTimeout(() => checkmark.classList.add("hidden"), 2000);
-    } catch (error) {
-        console.log(error);
     }
 }
 
