@@ -9,7 +9,7 @@ module.exports = {
         const listId = req.params.id
         try {
             const inventory = await Inventory.findOne({ _id: listId })
-            res.render("inventoryMobile.ejs", { inventory: inventory, listId: listId });
+            res.render("inventory.ejs", { inventory: inventory, listId: listId });
         } catch (error) {
             console.log(error)
         }
@@ -50,8 +50,9 @@ module.exports = {
                 { $inc: { "items.$.count": count} }, 
                 { new: true }
             )
-            const newCount = incrementedCount.items.find(obj => obj.name === itemName).count
-            res.json({ newCount: newCount })
+            const updatedItem = incrementedCount.items.find(obj => obj.name === itemName)
+            console.log(updatedItem)
+            res.json({ newCount: updatedItem.count, price: updatedItem.price })
         } catch (error) {
             console.log(error)
         }

@@ -7,9 +7,11 @@ const selectCategory    = document.querySelector("#categoryFilter");
 const dropdownBars      = document.querySelectorAll(".titleBar");
 const decreaseBtns      = document.querySelectorAll(".decreaseBtn");
 const increaseBtns      = document.querySelectorAll(".increaseBtn");
-const submitUpdateBtns  = document.querySelectorAll(".submitInput");
-const submitMobileBtn  = document.querySelector('.submitInputMobile')
+const submitUpdateBtns  = document.querySelectorAll(".inlineSubmit");
+const submitMobileBtn   = document.querySelector('.submitInputMobile')
 const radioBtns         = document.querySelectorAll(".radio");
+const mobileNumInput    = document.querySelector('.numberInput')
+
 
 if (openAddItemsModal) openAddItemsModal.addEventListener("click", openAddItemModal);
 if (createListBtn)     createListBtn.addEventListener("click", openCreateListModal);
@@ -21,6 +23,7 @@ if (increaseBtns)      increaseBtns.forEach((el) =>el.addEventListener("click", 
 if (submitUpdateBtns)  submitUpdateBtns.forEach((el) => el.addEventListener("click", updateInventory)); 
 if (submitMobileBtn)   submitMobileBtn.addEventListener("click", updateInventoryMobile); 
 if (radioBtns)         radioBtns.forEach((el) => el.addEventListener("change", selectRadioBtn));
+if (mobileNumInput)    mobileNumInput.addEventListener("click", focusNumInput)
 
 
 
@@ -91,16 +94,20 @@ function timeoutInput(e) {
 async function updateInventory(e) {
     e.preventDefault();
     e.stopPropagation();
-    const form = e.target.parentNode;
-    const action = form.action;
-    const listItem = form.parentNode.parentNode;
-    const numberInput = form.querySelector(".numberInput");
-    const count = numberInput.value;
-    const itemCountSpan = listItem.querySelector(".itemCount");
+    const listItem = e.target.parentNode.parentNode
+    const itemName = listItem.querySelector('input[type=radio').id.split('_').join(' ');
+    const form = e.target.parentNode
+    const route = form.action
+    const numInput = form.querySelector('input[type=number')
+    const count = numInput.value;
     const checkmark = listItem.querySelector(".checkmark");
+    const itemCountSpan = listItem.querySelector(".itemCount");
+    const countedBySpan = listItem.querySelector(".countedBy");
+    const totalDollarSpan = listItem.querySelector('.totalDollar')
+
     if(+itemCountSpan.innerText + +count >= 0) { //makes sure count can't go below 0
         try {
-            const response = await fetch(action, {
+            const response = await fetch(route, {
                 method: "put",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({
@@ -108,8 +115,17 @@ async function updateInventory(e) {
                 }),
             });
             const data = await response.json();
-            numberInput.value = 1;
+            numInput.value = 1;
             itemCountSpan.textContent = data.newCount;
+            totalDollarSpan.textContent = `$${data.newCount * data.price}`
+            if (
+                countedBySpan.innerText === "Case" ||
+                countedBySpan.innerText === "Cases"
+            ) {
+                data.newCount > 1
+                    ? (countedBySpan.innerText = "Cases")
+                    : (countedBySpan.innerText = "Case");
+            }
             checkmark.classList.remove("hidden");
             setTimeout(() => checkmark.classList.add("hidden"), 2000);
         } catch (error) {
@@ -118,6 +134,7 @@ async function updateInventory(e) {
     }
 }
 
+
 async function updateInventoryMobile(e) {
     e.preventDefault();
     const itemSelected = [...radioBtns].find((el) => el.checked === true);
@@ -125,11 +142,11 @@ async function updateInventoryMobile(e) {
     const form = e.target.parentNode;
     const action = form.action;
     const route = action + `?itemName=${itemName}`;
-    const numberInput = form.querySelector(".numberInput");
-    const count = numberInput.value;
+    const count = mobileNumInput.value;
     const checkmark = itemSelected.parentNode.querySelector(".checkmark");
     const itemCountSpan = itemSelected.parentNode.querySelector(".itemCount");
     const countedBySpan = itemSelected.parentNode.querySelector(".countedBy");
+    const totalDollarSpan = itemSelected.parentNode.querySelector('.totalDollar')
     
     if(+itemCountSpan.innerText + +count >= 0) { //makes sure count can't go below 0
         try {
@@ -141,8 +158,9 @@ async function updateInventoryMobile(e) {
                 }),
             });
             const data = await response.json();
-            numberInput.value = 1;
+            mobileNumInput.value = 1;
             itemCountSpan.textContent = data.newCount;
+            totalDollarSpan.textContent = `$${data.newCount * data.price}`
             if (
                 countedBySpan.innerText === "Case" ||
                 countedBySpan.innerText === "Cases"
@@ -166,4 +184,9 @@ function selectRadioBtn(e) {
             ? radio.parentNode.classList.add('selected')
             : radio.parentNode.classList.remove('selected');
     }
+    mobileNumInput.value = 1;
+}
+
+function focusNumInput(e) {
+    e.target.value = '';
 }
