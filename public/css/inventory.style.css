@@ -1,54 +1,244 @@
+/* ===================================== */
+/* ============= Layout ================ */
+/* ===================================== */
+header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#listContainer {
+    margin-bottom: 100px;
+}
+
+.labels {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.2rem 0 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.priceLabel,
+.price {
+    display: none;
+    position: absolute;
+    left: 200px;
+}
+
+.totalLabel,
+.totalDollar {
+    display: none;
+    position: absolute;
+    left: 300px;
+}
+
 .eachItemLine {
-    font-weight: bold;
-    color: var(--black-color);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
     margin-bottom: 5px;
-    border-bottom: 1px solid var(--black-color);
-    padding:  1rem .5rem;
 }
 
-.itemCount {
-    margin-left: auto;
+.radio {
+    display: none;
 }
 
-.numberInputContainer {
+#addInvForm {
+    height: 90px;
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    align-items: flex-start;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     margin-left: auto;
+    padding: 1rem;
+}
+
+#addInvForm form {
+    display: flex;
+    align-items: center;
+    width: 100%;
 }
 
 .numberInput {
-    width: 10ch;
-    text-align: center;
+    width: 8ch;
+    margin: 0 0.5rem;
 }
 
-.increaseBtn, .decreaseBtn {
+.increaseBtn,
+.decreaseBtn {
+    padding: 1rem;
+    border-radius: 10em;
     font-weight: bold;
-    font-size: 1.5rem;
     height: 50px;
     width: 50px;
-    text-align: center;
-    border-radius: 4px;
-    padding: 0;
 }
 
-.submitInput {
-    padding: 1rem
+.submitInputMobile {
+    margin-left: auto;
+    padding: 1rem;
 }
 
-#listContainer, .dropdownSection {
+label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2rem;
+    width: 100%;
+    padding: 1rem 0.5rem;
+}
+
+li {
+    padding: none;
+}
+
+.itemCount {
+    margin-right: 5px;
+}
+
+.countContainer {
+    display: flex;
+    align-items: center;
+}
+
+.inlineAddForm {
+    display: none;
+    position: absolute;
+    right: 200px;
+}
+
+.inlineNumInput {
+    width: 75px;
+}
+
+.inlineSubmit {
+    padding: 0.5rem 1rem;
+}
+
+/* ===================================== */
+/* ======== Additional Styles ========== */
+/* ===================================== */
+#listContainer {
     background-color: var(--primary-light-color);
 }
 
-.dropdownBar .dropdownSection {
-    background-color: white;
+.titleBar > * {
+    pointer-events: none;
 }
 
-.dropdownBar .dropdownBar{
-    margin: 0;
+.labels {
+    font-size: 0.8rem;
 }
 
-.dropdownSection ul li{
-    padding: 0;
+.labels > * {
+    text-decoration: underline;
+}
+
+.eachItemLine {
+    font-weight: bold;
+    color: var(--black-color);
+}
+
+#addInvForm {
+    background-color: var(--primary-opaque-color);
+}
+
+.numberInput {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+.increaseBtn,
+.decreaseBtn {
+    text-align: center;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    outline: none;
+    border: none;
+}
+
+.submitInputMobile {
+    border-radius: 1em;
+    background-color: #94e22b;
+    color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+}
+
+label {
+    text-transform: capitalize;
+    background-color: hsla(0, 0%, 83%, 0.6);
+    border-radius: 6px;
+}
+
+.selected {
+    background-color: var(--primary-opaque-color);
+    color: white;
+}
+
+.selected .itemCount {
+    color: white;
+}
+
+.selected .countedBy {
+    color: var(--primary-color);
+}
+
+.itemCount {
+    color: var(--primary-color);
+}
+
+.countedBy {
+    font-size: 0.8rem;
+}
+
+.price,
+.totalDollar {
+    font-size: 0.8rem;
+}
+
+.inlineNumInput {
+    text-align: center;
+}
+
+.inlineSubmit {
+    border-radius: 4px;
+    background-color: #94e22b;
+    color: var(--primary-color);
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ===================================== */
+/* ========== Media Queries ============ */
+/* ===================================== */
+
+@media screen and (min-width: 475px) {
+    .priceLabel,
+    .price {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 525px) {
+    .totalLabel,
+    .totalDollar {
+        display: block;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .inlineAddForm {
+        display: block;
+    }
+
+    #addInvForm {
+        display: none;
+    }
 }

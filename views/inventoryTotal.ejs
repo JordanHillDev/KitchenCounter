@@ -1,0 +1,32 @@
+<%- include('partials/header', {styleSheet: "/css/inventoryTotal.style.css"});
+%>
+
+<section class="inventoryTable">
+    <% inventory.categories.sort().forEach(category => { %>
+        <h2 class="title"><%= category %></h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Count</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+            <% inventory.items.filter(el => el.category===category).sort().forEach(item => { %>
+                <tr>
+                    <td class="itemName"><%= item.name %></td>
+                    <td class="itemCount"><%= item.count %></td>
+                    <td class="itemPrice">$<%= item.price.toFixed(2) %></td>
+                    <td class="itemTotal">$<%= (item.price * item.count).toFixed(2) %></td>
+                </tr>
+            <% }) %>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="categoryTotal">$<%= inventory.items.filter(el => el.category === category).reduce((acc, curr) => acc += +(curr.price * curr.count), 0).toFixed(2) %></td>
+            </tr>
+        </table>
+            <% }) %>
+</section>
+
+<%- include('partials/footer') -%>

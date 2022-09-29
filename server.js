@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(logger('dev'))
 app.use(methodOverride("_method"))
+
 // Sessions
 app.use(
     session({
@@ -48,5 +49,5 @@ app.use('/masterList', masterListRoutes)
 app.use('/inventory', inventoryRoutes)
  
 app.listen(process.env.PORT, ()=>{
-    console.log('Server is running, you better catch it!')
+    console.log(`KitchenCounter is running on port ${process.env.PORT}`)
 })    

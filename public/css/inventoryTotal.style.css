@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+}
+
+.title {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    margin: 1rem 0;
+}
+
+.itemName {
+    text-transform: capitalize;
+    text-align: left;
+    padding-left: 1rem;
+    max-width: 50px;
+}
+
+td {
+    width: 70px;
+    border: 1px solid gray;
+    text-align: center;
+    padding: .5rem;
+}
+
+th {
+    text-decoration: underline;
+    padding-bottom: 10px;
+}
+
+.categoryTotal {
+    font-weight: bold;
+}
+

@@ -13,6 +13,8 @@ router.post("/updateItem/:listId", masterList.updateItem);
 
 router.post("/addCategory/:listId", masterList.addCategory);
 
+router.delete("/delete/:listId", masterList.deleteList)
+
 router.delete("/removeCategory/:listId", masterList.removeCategory);
 
 router.delete("/removeItem/:listId", masterList.removeItem);

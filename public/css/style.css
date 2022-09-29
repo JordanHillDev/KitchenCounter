@@ -48,6 +48,9 @@ button, input[type=submit] {
     -moz-appearance: none;
 }
 
+i {
+    pointer-events: none;
+}
 
 /* ===================================== */
 /* ============= Variables ============= */
@@ -133,6 +136,31 @@ button, input[type=submit] {
     color: var(--primary-color);
     border-color: var(--primary-light-color);
     box-shadow: 1px 1px 1px 1px var(--primary-color);
+}
+
+.btn_light {
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    background-color: var(--primary-light-color);
+    border: none;
+    box-shadow: 2px 2px 4px 2px rgb(141, 130, 139);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.btn_light:hover {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+.btn_delete {
+    background-color: #ff4330;
+    color: white;
+}
+
+.btn_delete:hover {
+    background-color: #851408;
+    color: white;
 }
 
 /* ===================================== */
@@ -230,6 +258,10 @@ main {
     background-color: var(--primary-color);
     border-radius: 100%;
     border: 8px solid var(--primary-light-color);
+}
+
+#iconContainer:hover {
+    border-color: var(--accent-color);
 }
 
 #icon {

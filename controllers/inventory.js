@@ -3,9 +3,6 @@ const MasterList = require("../models/MasterList");
 
 module.exports = {
     getIndex: async (req, res) => {
-        const isMobile = req.headers['user-agent'];
-        console.log(isMobile)
-        
         const listId = req.params.id
         try {
             const inventory = await Inventory.findOne({ _id: listId })
@@ -14,6 +11,16 @@ module.exports = {
             console.log(error)
         }
         
+    },
+    getInventoryTotal: async(req, res) => {
+        const listId = req.params.listId
+
+        try {
+            const inventory = await Inventory.findOne({ _id: listId })
+            res.render("inventoryTotal.ejs", { inventory: inventory })
+        } catch (error) {
+            console.log(error)
+        }
     },
     createInventory: async (req, res) => {
         try {

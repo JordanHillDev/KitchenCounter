@@ -5,6 +5,8 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.get('/:id', inventory.getIndex)
 
+router.get('/total/:listId', inventory.getInventoryTotal)
+
 router.post('/createInventory', inventory.createInventory)
 
 router.put('/update/:listId', inventory.updateInventory)

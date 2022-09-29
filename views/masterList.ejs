@@ -12,8 +12,10 @@
             </option>
         <% }) %>
     </select>
-
-    <button id="openAddItemsModal">Add Items</button>
+    <div class="btnContainer">
+        <button id="openAddItemsModal" class="btn btn_secondary">Add Items</button>
+    </div>
+   
     
     <% list.categories.sort().forEach(category => { %>
         <section id=<%= category %> class="dropdownBar">
@@ -25,13 +27,13 @@
             <section class="dropdownSection hidden">
                 <ul>
                     <% list.items.filter(ea => ea.category === category).forEach(item => { %>
-                        <li data-listid=<%= listId %>>                                    
+                        <li class="eachItemLine" data-listid=<%= listId %>>
+                            <span class="itemName"><%= item.name %></span>                                    
                             <form 
-                                class="eachItemLine" 
                                 action="/masterList/updateItem/<%= listId %>?itemName=<%= item.name %>" 
                                 method="POST">                                        
-                                    <span class="itemName"><%= item.name %></span>                                     
-                                    <input 
+                                    <div class="updateInputs">
+                                        <input 
                                         name="price" 
                                         class='priceInput' 
                                         type="number" 
@@ -55,11 +57,12 @@
                                                     <option value=<%= el %>><%= el %></option>
                                                 <% } %>
                                         <% }) %>
-                                    </select>                                        
-                                    <input type="submit" value="Submit">
+                                    </select>
+                                    </div>                                                                       
+                                    <input class="btn_light updateBtn" type="submit" value="Update">
                             </form>
                             <form action="/masterList/removeItem/<%= listId %>?item=<%= item.name  %>&_method=DELETE" method="POST">
-                                <input type="submit" value="Remove">
+                                <input class="btn_light btn_delete " type="submit" value="Remove">
                             </form>
                         </li>
                     <% }) %>
@@ -76,19 +79,20 @@
     </div>
     
     <section class="dropdownSection hidden">
-        <form action="/masterList/addCategory/<%= listId %>" method="POST">
-            <input  required type="text" name="categoryName" placeholder="Category">
-            <button type="submit"><i class="fa-solid fa-plus"></i></button>
+        <form id="addCategoryForm" action="/masterList/addCategory/<%= listId %>" method="POST">
+            <input class="addCategoryInput" required type="text" name="categoryName" placeholder="Category">
+            <input class="btn_light" type="submit" value="Add Category">
         </form>
         
         <ul>
             <% list.categories.forEach(el => { %>
-                <li>
+                <li class="eachItemLine">
                     <span class="itemName"><%= el %></span>
                     <form 
                         action="/masterList/removeCategory/<%= listId %>?category=<%= el %>&_method=DELETE" 
                         method="POST">
-                        <input 
+                        <input
+                            class="btn_light btn_delete" 
                             type="submit" 
                             value="Remove">
                     </form>

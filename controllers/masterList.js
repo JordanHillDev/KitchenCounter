@@ -28,6 +28,15 @@ module.exports = {
             console.log(error);
         }
     },
+    deleteList: async (req, res) => {
+        const listId = req.params.listId
+        try {
+            await MasterList.deleteOne({ _id: listId })
+            res.redirect("/dashboard")
+        } catch (error) {
+            console.log(error)
+        }
+    },
     addCategory: async (req, res) => {
         const categoryName = req.body.categoryName.toLowerCase();
         const listId = req.params.listId;
