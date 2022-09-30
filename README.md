@@ -22,9 +22,9 @@ A restaurant inventory app to be used on mobile or tablet to make counting weekl
 
 To run this project, you will need to add the following environment variables to your config.env file
 
-`PORT` = <port>
+`PORT` = < port # >
 
-`MONGO_URI` = <mongo uri>
+`MONGO_URI` = < mongo uri >
 
 
 ## Run Locally
