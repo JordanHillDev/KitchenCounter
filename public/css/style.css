@@ -266,6 +266,12 @@ main {
 
 #icon {
     background-color: var(--primary-color);
+    stroke: red;
+    fill: blue;
+}
+
+#icon:hover {
+ 
 }
 
 h1 {
