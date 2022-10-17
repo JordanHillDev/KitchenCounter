@@ -3,6 +3,9 @@
 
 A restaurant inventory app to be used on mobile or tablet to make counting weekly inventories easier 
 
+<img src="public/images/inventoryFull.png" width="80%">
+<img src="public/images/inventoryMobile.png">
+
 ## Features
 
 - Mobile Responsiveness
