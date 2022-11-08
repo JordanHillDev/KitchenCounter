@@ -12,7 +12,7 @@ const submitMobileBtn   = document.querySelector('.submitInputMobile')
 const radioBtns         = document.querySelectorAll(".radio");
 const mobileNumInput    = document.querySelector('.numberInput')
 
-
+// Event Listeners
 if (openAddItemsModal) openAddItemsModal.addEventListener("click", openAddItemModal);
 if (createListBtn)     createListBtn.addEventListener("click", openCreateListModal);
 if (closeModalBtns)    closeModalBtns.forEach((el) => el.addEventListener("click", closeModal));

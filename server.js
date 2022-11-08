@@ -13,18 +13,29 @@ const dashboardRoutes = require('./routes/dashboard')
 const masterListRoutes = require('./routes/masterList')
 const inventoryRoutes = require('./routes/inventory')
 
+// .env File
 require('dotenv').config({path: './config/config.env'})
 
 // Passport config
 require('./config/passport')(passport)
 
+// Database Connect
 connectDB()
 
+// View Engine
 app.set('view engine', 'ejs')
+
+// Static Folder
 app.use(express.static('public'))
+
+// Body Parsing
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+// Logging
 app.use(logger('dev'))
+
+// Use Forms for PUT / DELETE
 app.use(methodOverride("_method"))
 
 // Sessions
@@ -37,17 +48,20 @@ app.use(
     })
   )
   
-// Passport middleware
+// Passport Middleware
 app.use(passport.initialize())
 app.use(passport.session())
 
+// Flash Messages for errors, info, etc.
 app.use(flash())
-  
+ 
+// Routes
 app.use('/', mainRoutes)
 app.use('/dashboard', dashboardRoutes)
 app.use('/masterList', masterListRoutes)
 app.use('/inventory', inventoryRoutes)
  
-app.listen(process.env.PORT, ()=>{
+// Server 
+app.listen(process.env.PORT, () => {
     console.log(`KitchenCounter is running on port ${process.env.PORT}`)
 })    
