@@ -57,6 +57,7 @@ header {
     right: 0;
     margin-left: auto;
     padding: 1rem;
+    border-radius: 2em 0 0 0;
 }
 
 #addInvForm form {

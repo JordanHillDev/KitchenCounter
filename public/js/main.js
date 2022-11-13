@@ -118,6 +118,8 @@ async function updateInventory(e) {
             numInput.value = 1;
             itemCountSpan.textContent = data.newCount;
             totalDollarSpan.textContent = `$${data.newCount * data.price}`
+            
+            // Keeps correct form of "Case"
             if (
                 countedBySpan.innerText === "Case" ||
                 countedBySpan.innerText === "Cases"
@@ -126,6 +128,8 @@ async function updateInventory(e) {
                     ? (countedBySpan.innerText = "Cases")
                     : (countedBySpan.innerText = "Case");
             }
+            
+            // Shows checkmark if successful
             checkmark.classList.remove("hidden");
             setTimeout(() => checkmark.classList.add("hidden"), 2000);
         } catch (error) {
