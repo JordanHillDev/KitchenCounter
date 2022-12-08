@@ -1,47 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-    <title>KitchenCounter</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-        rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/login.style.css" />
-</head>
-<body>
-    <img id="loginImg" src="images\default-monochrome.svg" alt="" />
-    <section id="loginModal">
-        <h2>Sign In</h2>
-        <div class="errorContainer">
-            <% if (locals.messages.errors) { %>
-                <% messages.errors.forEach( el => { %>
-                    <div class="alert alert-danger"><%= el.msg %></div>
-                <% }) %>    
-            <% } %>
-            <% if (locals.messages.info) { %>
-                <% messages.info.forEach( el => { %>
-                    <div class="alert alert-danger"><%= el.msg %></div>
-                <% }) %>    
-            <% } %>
-        </div>
-        <form action="/login" method="POST">
-            <input type="email" name="email" placeholder="Email">
-            <input type="password" name="password" placeholder="Password">
-            <span><a href="">Forgot your password?</a></span>
-            <input type="submit" class="btn btn_secondary" >
-        </form>
-        <span>Don't have an account? <a href="/signup">Sign up</a></span>
-    </section>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+        <title>KitchenCounter</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/login.style.css" />
+    </head>
+    <body>
+        <img id="loginImg" src="images\default-monochrome.svg" alt="" />
+        <section id="loginModal">
+            <h2>Sign In</h2>
+            <div class="errorContainer">
+                <% if (locals.messages.errors) { %> <% messages.errors.forEach(
+                el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+                messages.info.forEach( el => { %>
+                <div class="alert alert-danger"><%= el.msg %></div>
+                <% }) %> <% } %>
+            </div>
+            <form action="/login" method="POST">
+                <input type="email" name="email" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <span><a href="">Forgot your password?</a></span>
+                <input type="submit" class="btn btn_secondary" />
+            </form>
+            <span>Don't have an account? <a href="/signup">Sign up</a></span>
+        </section>
+        <section id="exampleLogin">
+            <h2 class="example">Example Log In</h2>
+            <h2 class="example">Email: example@example.com</h2>
+            <h2 class="example">Password: examplelist</h2>
+        </section>
+    </body>
 </html>

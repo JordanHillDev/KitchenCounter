@@ -247,6 +247,15 @@ section {
     right: 10px;
 }
 
+#exampleLogin {
+    background-color: var(--primary-color);
+    text-align: center;
+}
+
+#exampleLogin h2 {
+    color: var(--accent-color);
+}
+
 /* ===================================== */
 /* ============ Page Styles ============ */
 /* ===================================== */

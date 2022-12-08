@@ -141,6 +141,7 @@ async function updateInventory(e) {
 
 async function updateInventoryMobile(e) {
     e.preventDefault();
+    e.stopPropagation();
     const itemSelected = [...radioBtns].find((el) => el.checked === true);
     const itemName = itemSelected.id.split('_').join(' ') //needed for item names > 1 word
     const form = e.target.parentNode;
@@ -165,6 +166,8 @@ async function updateInventoryMobile(e) {
             mobileNumInput.value = 1;
             itemCountSpan.textContent = data.newCount;
             totalDollarSpan.textContent = `$${data.newCount * data.price}`
+            
+            // Keeps correct form of "Case"
             if (
                 countedBySpan.innerText === "Case" ||
                 countedBySpan.innerText === "Cases"
